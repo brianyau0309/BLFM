@@ -1,0 +1,10 @@
+#!/bin/sh
+
+curl -s https://corona-stats.online/hk |
+  grep "Hong Kong" |
+  sed "s/\s*//g ; s/║//g ; s/│/|/g" |
+  awk -F'|' '{ print "\n\
+  Hong Kong COVID-19\n\
+  \033[33mComfirmied: "$3"("$4")\n\
+  \033[92mRecover: "$7"\n\
+  \033[31mDeaths: "$5"\033[0m\n" }'

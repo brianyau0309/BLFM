@@ -1,0 +1,14 @@
+#!/bin/sh
+# Change directory when starting shell
+# Need to put a anchor in target file
+anchor="#wkon-anchor"
+target="$HOME/.bashrc"
+last="$HOME/.config/.last_wkon"
+case "$1" in
+  home)
+    sed -i "/$anchor/c\ $anchor" "$target" ;;
+  last)
+    cat $last ;;
+  "")
+    wkon="$(pwd)"; sed -i "/$anchor/c\cd $wkon $anchor" "$target"; echo $wkon > "$last" ;;
+esac

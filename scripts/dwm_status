@@ -1,0 +1,25 @@
+#!/bin/sh
+
+div='|'
+
+printNotification() {
+  status=$(cat $HOME/.config/dunst/status)
+  [ "$status" = "1" ] && echo 🔔 || echo 🔕
+}
+printStorage() {
+  df -h | grep '/dev/sda3' | awk '{ print "💽 "$4  }'
+  df -h ~ | grep -v 'Filesystem' | awk '{ print $4 }'
+}
+printDate() {
+	date '+📅 %Y-%m-%d(%a) 🕒 %H:%M'
+}
+statusBar() {
+  printStorage
+  printDate
+  printNotification
+}
+
+while :; do
+	xsetroot -name " $( statusBar | tr '\n' ' ')" #Change newline to space
+	sleep 30
+done

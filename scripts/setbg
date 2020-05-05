@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Change Wallpaper.
+# Dependencies:
+# - sxiv
+#   browsing images
+# - xwallpaper
+#   set x wallpaper
+
+wall="$HOME/.config/wallpaper/wall" #Wallpaper Location
+imgloc="$HOME/.config/wallpaper/images" #Images Location
+case "$1" in
+  reset) xwallpaper --zoom "$wall"; exit ;;
+  random) select="$imgloc/$(ls "$imgloc" | shuf -n 1)" ;;
+  "") select="$(sxiv -fto "$imgloc" | head -1)" ;;
+  *) echo "\033[31mError: setbg Need a valid argument"; exit 1 ;;
+esac
+[ "$select" = "" ] || (ln -sf "$select" "$wall"; xwallpaper --zoom "$wall"; [ "$2" = "nonotify" ] || notify-send --icon="$wall" "Background Changed")
+

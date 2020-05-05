@@ -1,0 +1,7 @@
+#!/bin/sh
+
+status="$HOME/.config/dunst/status"
+[ "$(cat $status)" = "1" ] &&
+(notify-send DUNST_COMMAND_PAUSE && echo 0 > $status) ||
+(notify-send DUNST_COMMAND_RESUME && echo 1 > $status) &&
+refstatus

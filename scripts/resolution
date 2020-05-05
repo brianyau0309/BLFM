@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ "$1" = "full" ] && xrandr -s 1920x1080_60.00 || xrandr -s 1440x900
+[ "$2" != "noreset" ] && setbg reset

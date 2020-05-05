@@ -1,0 +1,16 @@
+#!/bin/sh
+# Output an emoji
+# Dependencies:
+# - dmenu
+#   Chosing emoji in emoji list by using dmenu
+# - xclip
+#   Put it in clipboard by using xclip 
+# - xdotool
+#   Paste it by using xdotool
+# Show notification
+
+selected=$(cat "$HOME/.config/emoji_list"| dmenu -i -l 25 | awk '{print $1}' )
+[ ! -z "$selected" ] &&
+(echo -n "$selected" | xclip -f -selection clipbord | xclip) &&
+xdotool key Shift+Insert &&
+notify-send "$selected in clipboard"
