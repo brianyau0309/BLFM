@@ -7,8 +7,8 @@ printNotification() {
   [ "$status" = "1" ] && echo 🔔 || echo 🔕
 }
 printStorage() {
-  df -h | grep '/dev/sda3' | awk '{ print "💽 "$4  }'
-  df -h ~ | grep -v 'Filesystem' | awk '{ print $4 }'
+  #df -h | grep '/dev/sda3' | awk '{ print "💽 "$4  }'
+  df -h ~ | grep -v 'Filesystem' | awk '{ print "💽 " $4 }'
 }
 printDate() {
 	date '+📅 %Y-%m-%d(%a) 🕒 %H:%M'

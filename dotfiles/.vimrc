@@ -44,6 +44,7 @@ hi Search ctermbg=242
 hi SpellBad ctermbg=124
 hi Folded ctermbg=None
 hi FoldColumn ctermbg=None
+hi SignColumn ctermbg=None
 " Set Tab to 2 spaces
 set tabstop=2 shiftwidth=2 expandtab
 " Split
@@ -75,6 +76,11 @@ let g:ale_linters_explicit = 1
 "let g:ale_set_highlights = 1
 " vim-closetag
 let g:closetag_filenames = "*.html,*.jsx"
+" Git Gutter
+hi GitGutterAdd ctermbg=None
+hi GitGutterChange ctermbg=None
+hi GitGutterDelete ctermbg=None
+hi GitGutterChangeDelete ctermbg=None
 
 " Function
 " Zoom
