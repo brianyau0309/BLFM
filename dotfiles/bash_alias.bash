@@ -15,6 +15,7 @@ alias vst="cd ~/.vim/after && ls"
 # bash
 alias brc="vim ~/.bashrc"
 alias bpr="vim ~/.bash_profile"
+alias bal="vim ~/.config/BLFM/dotfiles/bash_alias.bash"
 # git
 alias g="git"
 # tmux
@@ -32,6 +33,8 @@ alias rrc="vim ~/.config/ranger/rc.conf"
 # wkon
 alias gh="cd ~ && wkon home"
 alias gw="cd $(cat $HOME/.config/.last_wkon) && wkon"
+# script folder
+alias msf="cd ~/.config/BLFM/scripts"
 # python virtualenv manager
 alias pvm="source ~/Workdesk/pvm/pvm"
 # memo
