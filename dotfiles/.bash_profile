@@ -2,10 +2,14 @@
 # ~/.bash_profile
 #
 
-PATH="$PATH:$HOME/.config/BLFM/scripts"
+export BLFM=$HOME/.config/BLFM
 export BROWSER=chromium
 export EDITOR=vim
+
+PATH="$PATH:$BLFM/scripts"
+
 wkon home
+
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # auto startx

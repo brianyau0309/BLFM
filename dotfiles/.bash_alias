@@ -1,7 +1,7 @@
 # Basic
 alias ls='ls --color=auto --group-directories-first'
 alias la="ls -A"
-alias ll="ls -l"
+alias ll="ls -lA"
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias +x="chmod +x"
@@ -15,7 +15,7 @@ alias vst="cd ~/.vim/after && ls"
 # bash
 alias brc="vim ~/.bashrc"
 alias bpr="vim ~/.bash_profile"
-alias bal="vim ~/.config/BLFM/dotfiles/bash_alias.bash"
+alias bal="vim ~/.bash_alias"
 # git
 alias g="git"
 # tmux
@@ -33,13 +33,13 @@ alias rrc="vim ~/.config/ranger/rc.conf"
 # wkon
 alias gh="cd ~ && wkon home"
 alias gw="cd $(cat $HOME/.config/.last_wkon) && wkon"
-# script folder
-alias msf="cd ~/.config/BLFM/scripts"
+# scripts folder
+alias ms="cd ~/.config/BLFM/scripts && la"
 # python virtualenv manager
-alias pvm="source ~/Workdesk/pvm/pvm"
+alias pvm="source ~/.config/pvm/pvm"
 # memo
-alias memo="~/Workdesk/memo/memo"
-alias mgp="~/Workdesk/memo/mgp"
+alias memo="~/.config/memo/memo"
+alias mgp="~/.config/memo/mgp"
 alias m="memo"
 alias ml="memo last"
 alias mt="memo last Tags"
