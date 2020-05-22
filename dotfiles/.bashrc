@@ -9,6 +9,6 @@
 [ -f ~/.bash_alias ] && source ~/.bash_alias # alias
 shopt -s autocd # auto cd
 
-PS1='\e[1m\e[93m[\W] $([ $? = 0 ] && echo "😁" || echo "😭")\e[0m '
+PS1='\e[1m\e[93m[\W] $([ $? = 0 ] && echo "😆" || echo "😭")\e[0m '
 
 [ -z $(wkon anchor) ] || cd $(wkon anchor)

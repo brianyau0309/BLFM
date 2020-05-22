@@ -45,6 +45,7 @@ hi SpellBad ctermbg=124
 hi Folded ctermbg=None
 hi FoldColumn ctermbg=None
 hi SignColumn ctermbg=None
+hi ExtraWhitespace ctermbg=red
 " Set Tab to 2 spaces
 set tabstop=2 shiftwidth=2 expandtab
 " Split
@@ -58,6 +59,9 @@ set wildignore+=/usr/include/**,**/node_modules/**,**/__pycache__/**,**/.git/**
 au BufNewFile,BufRead * set formatoptions-=cro
 " Set markdown syntax for my memo
 au BufNewFile,BufRead memo-* set ft=markdown
+" Show trailing space
+set listchars=trail:\ 
+set list
 
 " Plug setting
 " netrw
@@ -73,7 +77,6 @@ let g:netrw_hide = 0
 let g:ale_linters = { 'python': ['flake8'],
                     \ 'c': ['gcc'] }
 let g:ale_linters_explicit = 1
-"let g:ale_set_highlights = 1
 " vim-closetag
 let g:closetag_filenames = "*.html,*.jsx"
 " Git Gutter
@@ -124,8 +127,8 @@ nnoremap <leader>tf :tabf
 nnoremap <leader>b :b 
 nnoremap <leader>o :browse oldfiles<CR>
 " Terminal
-nnoremap <leader>t= :term<CR> 
-nnoremap <leader>t" :vertical term<CR> 
+nnoremap <leader>t= :term<CR>
+nnoremap <leader>t" :vertical term<CR>
 " Splite
 nnoremap <leader>= <C-w>t<C-w>K
 nnoremap <leader>" <C-w>t<C-w>H
@@ -139,7 +142,7 @@ nnoremap <leader>sP "*P
 nnoremap <silent> <leader>syy "+yy :silent! let @*=@+<CR>
 vnoremap <silent> <leader>sy "+y :silent! let @*=@+<CR>
 " Fugitive
-nnoremap <silent> <leader>g :silent! vertical Gstatus<CR>
+nnoremap <silent> <leader>g :silent! Gstatus<CR>
 nnoremap <silent> <leader>gb :silent! Gblame<CR>
 nnoremap <silent> <leader>gc :silent! Gcommit<CR>
 " Toggle
@@ -164,4 +167,5 @@ au BufWritePost *.tex !pdflatex -quiet -output-directory="%:p:h" "%:p" && notify
 " Snippet
 au BufNewFile,BufRead *.css ru css.vim
 au BufNewFile,BufRead *.html ru html.vim
+au BufNewFile,BufRead *.py ru python.vim
 au BufNewFile,BufRead memo-* ru memo.vim

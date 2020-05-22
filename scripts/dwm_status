@@ -3,23 +3,33 @@
 div='|'
 
 printNotification() {
-  status=$(cat $HOME/.config/dunst/status)
-  [ "$status" = "1" ] && echo 🔔 || echo 🔕
+  [ -f /tmp/.dunsttoggle ] && echo 🔕 || echo 🔔
 }
+
 printStorage() {
-  #df -h | grep '/dev/sda3' | awk '{ print "💽 "$4  }'
   df -h ~ | grep -v 'Filesystem' | awk '{ print "💽 " $4 }'
 }
+
 printDate() {
-	date '+📅 %Y-%m-%d(%a) 🕒 %H:%M'
+  date '+📅 %Y-%m-%d(%a) 🕒 %H:%M'
 }
+
+printAudio() {
+  sound=$(amixer sget Master | grep 'Left:' | awk -F"[][]" '{ print $2 }')
+  amixer sget Master | grep off >/dev/null &&
+    echo 🔇 ||
+    echo 🔊
+  echo $sound
+}
+
 statusBar() {
+  printAudio
   printStorage
   printDate
   printNotification
 }
 
 while :; do
-	xsetroot -name " $( statusBar | tr '\n' ' ')" #Change newline to space
-	sleep 30
+  xsetroot -name " $( statusBar | tr '\n' ' ')" #Change newline to space
+  sleep 30
 done

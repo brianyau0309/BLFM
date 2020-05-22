@@ -1,7 +1,10 @@
 #!/bin/sh
+# Toggle dunst
+# - libnotify
+# - dunst
 
-status="$HOME/.config/dunst/status"
-[ "$(cat $status)" = "1" ] &&
-(notify-send DUNST_COMMAND_PAUSE && echo 0 > $status) ||
-(notify-send DUNST_COMMAND_RESUME && echo 1 > $status) &&
+status="/tmp/.dunsttoggle"
+[ -f $status ] &&
+(notify-send DUNST_COMMAND_RESUME && rm $status) ||
+(notify-send DUNST_COMMAND_PAUSE && echo 1 > $status)
 refstatus

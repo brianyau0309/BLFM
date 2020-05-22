@@ -6,6 +6,8 @@
 #   browsing images
 # - xwallpaper
 #   set x wallpaper
+# - libnotify
+#   Show notification
 
 wall="$HOME/.config/wallpaper/wall" #Wallpaper Location
 imgloc="$HOME/.config/wallpaper/images" #Images Location

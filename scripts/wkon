@@ -5,7 +5,7 @@ target="/tmp/.wkon"
 last="$HOME/.config/.last_wkon"
 case "$1" in
   home)
-    rm $target ;;
+    rm $target 2> /dev/null; exit 0 ;;
   last)
     cat $last ;;
   anchor)

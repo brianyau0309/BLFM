@@ -1,0 +1,12 @@
+#!/bin/sh
+# Audio Control
+# "alsa-utils" is required
+
+steps="${2:-5}"
+case "$1" in
+  toggle) amixer sset Master toggle ;;
+  set) amixer sset Master "$steps"% ;;
+  up) amixer sset Master "$steps"%+ ;;
+  down) amixer sset Master "$steps"%- ;;
+esac >/dev/null
+refstatus

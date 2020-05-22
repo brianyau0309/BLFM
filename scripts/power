@@ -1,4 +1,8 @@
 #!/bin/sh
+# dmenu shortcut for Logout/Reboot/Shutdown
+# - dmenu
+#   Show option
+
 case "$(echo "Logout\nReboot\nShutdown" | dmenu -i -p 'Power Options')" in
   Logout) pkill Xorg ;;
   Reboot) reboot ;;
