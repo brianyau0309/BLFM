@@ -4,14 +4,14 @@
 # - dmenu
 #   Chosing emoji in emoji list by using dmenu
 # - xclip
-#   Put it in clipboard by using xclip 
+#   Put it in clipboard by using xclip
 # - xdotool
 #   Paste it by using xdotool
 # - libnotify
 #   Show notification
 
-selected=$(cat "$HOME/.config/emoji_list"| dmenu -i -l 25 | awk '{print $1}' )
+selected=$(cat "$HOME/.config/emoji_list"| dmenu -i -l 25)
 [ ! -z "$selected" ] &&
-(echo -n "$selected" | xclip -f -selection clipbord | xclip) &&
+(echo -n "${selected%% *}" | xclip -f -selection clipbord | xclip) &&
 xdotool key Shift+Insert &&
-notify-send "$selected in clipboard"
+notify-send -u low "Emoji in clipboard" "$selected"

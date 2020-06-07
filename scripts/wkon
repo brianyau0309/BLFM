@@ -1,15 +1,16 @@
 #!/bin/sh
 # Change directory when starting shell
-# Need to put a anchor in target file
-target="/tmp/.wkon"
+# Put it in .bashrc:
+# [ -z $(wkon anchor) ] || cd $(wkon anchor)
+wkon_tmp="/tmp/.wkon"
 last="$HOME/.config/.last_wkon"
 case "$1" in
   home)
-    rm $target 2> /dev/null; exit 0 ;;
+    rm $wkon_tmp 2>/dev/null ; exit 0 ;;
   last)
     cat $last ;;
   anchor)
-    [ -f $target ] && cat $target || echo ;;
+    [ -f $wkon_tmp ] && cat $wkon_tmp || echo ;;
   "")
-    wkon="$(pwd)"; echo "$wkon" > $target; echo $wkon > "$last" ;;
+    wkon="$(pwd)"; echo "$wkon" > $wkon_tmp; echo $wkon > "$last" ;;
 esac

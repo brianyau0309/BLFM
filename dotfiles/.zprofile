@@ -1,6 +1,3 @@
-#
-# ~/.bash_profile
-#
 export BLFM=$HOME/.config/BLFM
 export BROWSER=chromium
 export EDITOR=vim
@@ -17,9 +14,9 @@ export LESSHISTFILE=$HOME/.cache/.lesshst
 export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow -E ".cache" -E ".local" -E ".git" -E "pvm" -E "chromium" -E "plugged" -E ".fzf""
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-PATH="$PATH:$BLFM/scripts:$HOME/go/bin"
+PATH="$PATH:$BLFM/scripts"
 wkon home
-[[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # auto startx in tty1
 [ "$(tty)" = "/dev/tty1" ] && { pgrep -x dwm || exec startx; }
+

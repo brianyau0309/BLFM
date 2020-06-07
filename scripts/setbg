@@ -17,5 +17,5 @@ case "$1" in
   "") select="$(sxiv -fto "$imgloc" | head -1)" ;;
   *) echo "\033[31mError: setbg Need a valid argument"; exit 1 ;;
 esac
-[ "$select" = "" ] || (ln -sf "$select" "$wall"; xwallpaper --zoom "$wall"; [ "$2" = "nonotify" ] || notify-send --icon="$wall" "Background Changed")
+[ "$select" = "" ] || (ln -sf "$select" "$wall"; xwallpaper --zoom "$wall"; [ "$2" = "nonotify" ] || notify-send -u low --icon="$wall" "Setbg" "Background Changed")
 

@@ -1,0 +1,13 @@
+#!/bin/sh
+# Take a screen and put it in clipboard
+# Required:
+#   - scrot
+#   - xclip
+#   - libnotify
+#   - dunst
+
+screenshot="/tmp/screenshot.png"
+scrot -op $screenshot &&
+xclip -f -selection clipboard -t image/png -i $screenshot | xclip &&
+notify-send --icon="$screenshot" "Screenshot" "In clipboard & /tmp" ||
+notify-send "Screenshot Fail"

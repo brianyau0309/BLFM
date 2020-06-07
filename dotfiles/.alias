@@ -4,7 +4,7 @@ alias la="ls -A"
 alias ll="ls -lA"
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
-alias +x="chmod +x"
+alias ax="chmod +x"
 # pacman
 alias p="sudo pacman"
 # vim
@@ -15,7 +15,11 @@ alias vst="cd ~/.vim/after && ls"
 # bash
 alias brc="vim ~/.bashrc"
 alias bpr="vim ~/.bash_profile"
-alias bal="vim ~/.bash_alias"
+# zsh
+alias zrc="vim ~/.zshrc"
+alias zpr="vim ~/.zprofile"
+# alias
+alias al="vim ~/.alias"
 # git
 alias g="git"
 # tmux

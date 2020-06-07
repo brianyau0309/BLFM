@@ -60,8 +60,7 @@ au BufNewFile,BufRead * set formatoptions-=cro
 " Set markdown syntax for my memo
 au BufNewFile,BufRead memo-* set ft=markdown
 " Show trailing space
-set listchars=trail:\ 
-set list
+match ExtraWhitespace / \+$/
 
 " Plug setting
 " netrw
@@ -117,18 +116,17 @@ noremap <silent> <F1> :silent! setlocal spell! spelllang=en_uk<CR>
 set pastetoggle=<F2>
 nnoremap <silent> K :silent! nohls<CR>
 " Tabs
-nnoremap <silent> <C-h> :silent! tabmove -1<CR>
-nnoremap <silent> <C-l> :silent! tabmove +1<CR>
-nnoremap <silent> <C-k> gT
-nnoremap <silent> <C-j> gt
+nnoremap <silent> <C-h> <C-w><C-h>
+nnoremap <silent> <C-j> <C-w><C-j>
+nnoremap <silent> <C-k> <C-w><C-k>
+nnoremap <silent> <C-l> <C-w><C-l>
 " Find & Buffer
 nnoremap <leader>f :find 
 nnoremap <leader>tf :tabf 
 nnoremap <leader>b :b 
 nnoremap <leader>o :browse oldfiles<CR>
 " Terminal
-nnoremap <leader>t= :term<CR>
-nnoremap <leader>t" :vertical term<CR>
+nnoremap <leader>th :term<CR>
 " Splite
 nnoremap <leader>= <C-w>t<C-w>K
 nnoremap <leader>" <C-w>t<C-w>H
@@ -150,7 +148,7 @@ noremap <silent> <C-z> :silent! ZoomToggle<CR>
 nnoremap <silent> <leader>d :silent! Lex<CR>
 nnoremap <silent> <leader>l :silent! LocalListToggle<CR>
 " Preview
-au Filetype tex nnoremap <leader>p :!zathura "%:p:r.pdf" & disown<CR><CR>
+au Filetype tex nnoremap <leader>p :!zathura --fork "%:p:r.pdf"<CR><CR>
 " Ban Arrow
 vnoremap <Left> <nop>
 vnoremap <Down> <nop>
@@ -163,9 +161,10 @@ ca help tab help
 " Auto Command
 " On Write
 au BufWritePost config.h !cd '%:p:h' && sudo make clean install && cd ~-
-au BufWritePost *.tex !pdflatex -quiet -output-directory="%:p:h" "%:p" && notify-send --icon="$HOME/.cache/icon/pdficon2.png" "%:r.pdf" "$(pdfcount '%:p:r.pdf') words"
+au BufWritePost *.tex !pdflatex -quiet -output-directory="%:p:h" "%:p" && notify-send -u low --icon="$HOME/.cache/icon/pdficon2.png" "%:r.pdf" "$(pdfcount '%:p:r.pdf') words"
 " Snippet
 au BufNewFile,BufRead *.css ru css.vim
 au BufNewFile,BufRead *.html ru html.vim
 au BufNewFile,BufRead *.py ru python.vim
 au BufNewFile,BufRead memo-* ru memo.vim
+au BufNewFile,BufRead *.tex ru tex.vim

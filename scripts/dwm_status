@@ -7,26 +7,32 @@ printNotification() {
 }
 
 printStorage() {
-  df -h ~ | grep -v 'Filesystem' | awk '{ print "💽 " $4 }'
+  df -h ~ | grep -v 'Filesystem' | awk '{ print " " $4 }'
 }
 
 printDate() {
-  date '+📅 %Y-%m-%d(%a) 🕒 %H:%M'
+  date '+🗓 %a %d-%b %H:%M:%S'
 }
 
 printAudio() {
   sound=$(amixer sget Master | grep 'Left:' | awk -F"[][]" '{ print $2 }')
+  soundnum=$(echo $sound | sed 's/%//')
   amixer sget Master | grep off >/dev/null &&
     echo 🔇 ||
-    echo 🔊
+    ( ([ $soundnum -gt 66 ] && echo 🔊) ||
+      ([ $soundnum -gt 33 ] && echo 🔉) ||
+      echo 🔈 )
   echo $sound
 }
 
 statusBar() {
-  printAudio
   printStorage
+  echo ' 90%'
+  echo '🌞 50%'
+  printAudio
   printDate
   printNotification
+  echo 直
 }
 
 while :; do
