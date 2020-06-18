@@ -31,16 +31,14 @@ alias xpr="vim ~/.xprofile"
 alias dwc="vim ~/.config/dwm/config.h"
 alias stc="vim ~/.config/st/config.h"
 alias dmc="vim ~/.config/dmenu/config.h"
-# ranger
-alias r='ranger --choosedir=$HOME/.config/ranger/.rangerdir; LASTDIR=`cat $HOME/.config/ranger/.rangerdir`; cd "$LASTDIR"'
-alias rrc="vim ~/.config/ranger/rc.conf"
 # wkon
 alias gh="cd ~ && wkon home"
 alias gw="cd $(cat $HOME/.config/.last_wkon) && wkon"
 # scripts folder
 alias ms="cd ~/.config/BLFM/scripts && la"
-# python virtualenv manager
-alias pvm="source ~/.config/pvm/pvm"
+# python virtualenv manager, z for zsh
+alias pvm="source ~/.config/pvm/pvm_z"
+# alias pvm="source ~/.config/pvm/pvm"
 # memo
 alias memo="~/.config/memo/memo"
 alias mgp="~/.config/memo/mgp"

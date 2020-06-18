@@ -1,6 +1,5 @@
 #!/bin/sh
 xcompmgr -cf -D 2.5 -I 0.03 &
-echo 1 > "$HOME/.config/dunst/status"
 dunst &
 dwm_status &
 

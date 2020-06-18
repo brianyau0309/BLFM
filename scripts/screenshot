@@ -7,7 +7,7 @@
 #   - dunst
 
 screenshot="/tmp/screenshot.png"
-scrot -op $screenshot &&
-xclip -f -selection clipboard -t image/png -i $screenshot | xclip &&
-notify-send --icon="$screenshot" "Screenshot" "In clipboard & /tmp" ||
+(scrot -op $screenshot &&
+  xclip -f -selection clipboard -t image/png -i $screenshot &&
+  notify-send --icon="$screenshot" "Screenshot" "In clipboard & /tmp") ||
 notify-send "Screenshot Fail"

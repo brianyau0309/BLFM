@@ -33,6 +33,7 @@ filetype plugin indent on
 set nocompatible
 set number relativenumber
 set updatetime=200
+set viminfo+=n~/.vim/viminfo
 " Indent & Linebreak
 set smartindent linebreak
 " Fold

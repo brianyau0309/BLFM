@@ -16,10 +16,12 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 export LESSHISTFILE=$HOME/.cache/.lesshst
 export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow -E ".cache" -E ".local" -E ".git" -E "pvm" -E "chromium" -E "plugged" -E ".fzf""
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export HISTFILE=$HOME/.cache/.bash_history
 
 PATH="$PATH:$BLFM/scripts:$HOME/go/bin"
 wkon home
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+[ -f /tmp/.dunsttoggle ] && rm /tmp/.dunsttoggle
 
 # auto startx in tty1
 [ "$(tty)" = "/dev/tty1" ] && { pgrep -x dwm || exec startx; }

@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+alias -s pdf=zathura
+alias -s {py,js,jsx,css,html,tex,md,txt}=vim
+alias -s {jpg,png,jepg,gif.bmp}=sxiv

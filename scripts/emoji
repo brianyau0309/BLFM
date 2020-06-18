@@ -11,7 +11,7 @@
 #   Show notification
 
 selected=$(cat "$HOME/.config/emoji_list"| dmenu -i -l 25)
-[ ! -z "$selected" ] &&
+[ "$selected" = '' ] && exit
 (echo -n "${selected%% *}" | xclip -f -selection clipbord | xclip) &&
 xdotool key Shift+Insert &&
-notify-send -u low "Emoji in clipboard" "$selected"
+notify-send "Emoji" "$selected"

@@ -15,24 +15,21 @@ printDate() {
 }
 
 printAudio() {
-  sound=$(amixer sget Master | grep 'Left:' | awk -F"[][]" '{ print $2 }')
-  soundnum=$(echo $sound | sed 's/%//')
+  soundnum=$(echo $(amixer sget Master | grep 'Left:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
   amixer sget Master | grep off >/dev/null &&
     echo 🔇 ||
-    ( ([ $soundnum -gt 66 ] && echo 🔊) ||
-      ([ $soundnum -gt 33 ] && echo 🔉) ||
+    ( ([ $soundnum -gt 80 ] && echo 🔊) ||
+      ([ $soundnum -gt 20 ] && echo 🔉) ||
       echo 🔈 )
-  echo $sound
 }
 
 statusBar() {
   printStorage
   echo ' 90%'
-  echo '🌞 50%'
-  printAudio
   printDate
+  printAudio
   printNotification
-  echo 直
+  echo 
 }
 
 while :; do
