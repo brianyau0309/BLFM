@@ -23,7 +23,15 @@ printAudio() {
       echo 🔈 )
 }
 
+printMusic() {
+  pgrep mocp >/dev/null && [ ! "$(mocp -Q %file 2>/dev/null)" = ""  ] &&
+    ((mocp -i | grep PLAY >/dev/null) && echo "" || echo "") &&
+    mocp -Q %song
+}
+
 statusBar() {
+  printMusic
+  [ -z $(wkon anchor)  ] || echo "📁 $(wkon anchor | rev | cut -d'/' -f1 | rev)"
   printStorage
   echo ' 90%'
   printDate
@@ -32,7 +40,10 @@ statusBar() {
   echo 
 }
 
+# Reset while enter xorg
+[ -f /tmp/.dunsttoggle ] && rm /tmp/.dunsttoggle
+
 while :; do
   xsetroot -name " $( statusBar | tr '\n' ' ')" #Change newline to space
-  sleep 30
+  sleep 10
 done

@@ -42,8 +42,8 @@ bindkey '^e' edit-command-line
 [ -f ~/.alias ] && source ~/.alias
 [ -f ~/.zalias ] && source ~/.zalias
 # Plugin
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 bindkey '^k' autosuggest-accept
 [ -f ~/.config/.fzf.zsh ] && source ~/.config/.fzf.zsh

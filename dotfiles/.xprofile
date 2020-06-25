@@ -1,5 +1,5 @@
 #!/bin/sh
-xcompmgr -cf -D 2.5 -I 0.03 &
+xcompmgr -cf -D 3 -I 0.025 &
 dunst &
 dwm_status &
 

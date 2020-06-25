@@ -47,6 +47,9 @@ hi Folded ctermbg=None
 hi FoldColumn ctermbg=None
 hi SignColumn ctermbg=None
 hi ExtraWhitespace ctermbg=red
+hi VertSplit cterm=None ctermbg=236
+hi DiffAdd ctermfg=0
+hi DiffChange ctermfg=0
 " Set Tab to 2 spaces
 set tabstop=2 shiftwidth=2 expandtab
 " Split
@@ -55,13 +58,15 @@ set fillchars+=vert:\
 " Wildmenu and Finder
 set path+=**
 set wildmenu wildignorecase
-set wildignore+=/usr/include/**,**/node_modules/**,**/__pycache__/**,**/.git/**
+set wildignore+=/usr/include/**,**/node_modules/**,**/__pycache__/**,**/.git/**,**/pvm/python/**,**/pvm/venv/**
 " Disable comment continuation
 au BufNewFile,BufRead * set formatoptions-=cro
 " Set markdown syntax for my memo
 au BufNewFile,BufRead memo-* set ft=markdown
 " Show trailing space
 match ExtraWhitespace / \+$/
+" Center while enter insert mode
+autocmd Insertenter * norm zz
 
 " Plug setting
 " netrw
@@ -121,10 +126,12 @@ nnoremap <silent> <C-h> <C-w><C-h>
 nnoremap <silent> <C-j> <C-w><C-j>
 nnoremap <silent> <C-k> <C-w><C-k>
 nnoremap <silent> <C-l> <C-w><C-l>
+" Replace
+nnoremap <leader>r :%s//gI<Left><Left><Left>
 " Find & Buffer
-nnoremap <leader>f :find 
-nnoremap <leader>tf :tabf 
-nnoremap <leader>b :b 
+nnoremap <leader>f :find<Space>
+nnoremap <leader>tf :tabf<Space>
+nnoremap <leader>b :b<Space>
 nnoremap <leader>o :browse oldfiles<CR>
 " Terminal
 nnoremap <leader>th :term<CR>
