@@ -1,0 +1,22 @@
+#!/bin/sh
+# !! Use --app=url option to instead
+# Generate shorcut for chrome apps
+
+appsDir="$HOME/.local/chromium_apps"
+link=$(xclip -o)
+appname=$(echo | dmenu -p "App Name for $link:")
+[ "$appname" = "" ] && exit
+echo "chromium --app=\"$link\"" > "$appsDir/$appname"
+chmod +x $appsDir/*
+
+#appsList="$HOME/.local/share/applications"
+#appsDir="$HOME/.local/chromium_apps"
+#[ -d $appsList  ] || echo "Error: Please at least install one chrome app." || exit
+#(echo $PATH | grep $appsDir >/dev/null) || echo "Error: Please add \"$appsDir\" to envirment PATH." || exit
+
+#[ -d $appsDir  ] || mkdir -p $appsDir &&
+#rm -rf $appsDir/* &&
+#find $appsList -maxdepth 1 -name "chrom*" |\
+  #awk -v appsDir=$appsDir '{ system("grep Exec " $1 "| sed 's/Exec=//g' >"\
+  #appsDir "/$(grep Name "$1" | sed 's/Name=//g' | cut -d\" \" -f1)")  }' &&
+#chmod +x $appsDir/*

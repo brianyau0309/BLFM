@@ -17,12 +17,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
+Plug 'junegunn/goyo.vim'
 "Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
@@ -80,7 +82,8 @@ let g:netrw_list_hide .= ',\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_hide = 0
 " ale
 let g:ale_linters = { 'python': ['flake8'],
-                    \ 'c': ['gcc'] }
+                    \ 'c': ['gcc'],
+                    \ 'javascript': ['eslint'] }
 let g:ale_linters_explicit = 1
 " vim-closetag
 let g:closetag_filenames = "*.html,*.jsx"
@@ -89,6 +92,8 @@ hi GitGutterAdd ctermbg=None
 hi GitGutterChange ctermbg=None
 hi GitGutterDelete ctermbg=None
 hi GitGutterChangeDelete ctermbg=None
+" Goyo
+let g:goyo_width = 120
 
 " Function
 " Zoom
@@ -128,6 +133,7 @@ nnoremap <silent> <C-k> <C-w><C-k>
 nnoremap <silent> <C-l> <C-w><C-l>
 " Replace
 nnoremap <leader>r :%s//gI<Left><Left><Left>
+vnoremap <leader>r :%s//gI<Left><Left><Left>
 " Find & Buffer
 nnoremap <leader>f :find<Space>
 nnoremap <leader>tf :tabf<Space>
@@ -149,12 +155,11 @@ nnoremap <silent> <leader>syy "+yy :silent! let @*=@+<CR>
 vnoremap <silent> <leader>sy "+y :silent! let @*=@+<CR>
 " Fugitive
 nnoremap <silent> <leader>g :silent! Gstatus<CR>
-nnoremap <silent> <leader>gb :silent! Gblame<CR>
-nnoremap <silent> <leader>gc :silent! Gcommit<CR>
 " Toggle
 noremap <silent> <C-z> :silent! ZoomToggle<CR>
 nnoremap <silent> <leader>d :silent! Lex<CR>
 nnoremap <silent> <leader>l :silent! LocalListToggle<CR>
+nnoremap <silent> <leader>m :silent! Goyo<CR>
 " Preview
 au Filetype tex nnoremap <leader>p :!zathura --fork "%:p:r.pdf"<CR><CR>
 " Ban Arrow

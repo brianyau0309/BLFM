@@ -6,11 +6,11 @@ wkon_tmp="/tmp/.wkon"
 last="$HOME/.config/.last_wkon"
 case "$1" in
   home)
-    rm $wkon_tmp 2>/dev/null ; exit 0 ;;
+    rm $wkon_tmp 2>/dev/null && refstatus && exit 0 ;;
   last)
     cat $last ;;
   anchor)
     [ -f $wkon_tmp ] && cat $wkon_tmp || echo ;;
   "")
-    wkon="$(pwd)"; echo "$wkon" > $wkon_tmp; echo $wkon > "$last" ;;
+    wkon="$(pwd)" && echo "$wkon" > $wkon_tmp && echo $wkon > "$last" && refstatus ;;
 esac

@@ -1,9 +1,23 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage[margin=1.1in]{geometry}
 \usepackage{indentfirst, setspace, titlesec}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage[backend=biber,
+  sorting=nyt,
+  uniquename=init,
+  style=bath,
+  maxcitenames=3,
+  maxbibnames=99,
+  giveninits=true]{biblatex}
+\DeclareNameAlias{sortname}{family-given}
+%\addbibresource{Reference.bib}
 
-% Times Roman
-%\usepackage{mathptmx}
+\title{Title}
+\author{Yau Siu Fung Brian}
+\date{}
 
 % Avoid work breaking
 \tolerance=1
@@ -15,17 +29,21 @@
 \renewcommand{\thesection}{\arabic{section}}
 \titleformat*{\section}{\normalfont\large\bfseries}
 \titlespacing*{\section}{0pt}{5pt}{8pt}
+\titleformat*{\subsection}{\normalfont\normalsize\bfseries\itshape}
+\titlespacing*{\subsection}{0pt}{4pt}{5pt}
+\titleformat*{\subsubsection}{\normalfont\normalsize\itshape}
+\titlespacing*{\subsubsection}{0pt}{2pt}{0pt}
+
+% Hyperlink
+% \usepackage[colorlinks=true,urlcolor=blue,citecolor=black,linkcolor=black]{hyperref}
 
 \begin{document}
-\doublespace
-\begin{center}
-{\Large Title}
-
-{\large Yau Siu Fung Brian}
-\end{center}
-
+\maketitle
 \onehalfspace
-\section{Section Title}
+\bigskip
+
+
+\section{}
+
 
 \end{document}
-

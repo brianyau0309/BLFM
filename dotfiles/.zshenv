@@ -13,4 +13,3 @@ export LESS_TERMCAP_us=$'\e[1;4;94m'
 export LESSHISTFILE=$HOME/.cache/.lesshst
 export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow -E ".cache" -E ".local" -E ".git" -E "pvm" -E "chromium" -E "plugged" -E ".fzf""
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-PATH="$PATH:$BLFM/scripts"

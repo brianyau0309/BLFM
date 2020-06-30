@@ -1,0 +1,5 @@
+Sxiv.foreground: #dddddd
+Sxiv.background: #333333
+
+XTerm*Background: #333333
+XTerm*faceName: SourceCodePro-8

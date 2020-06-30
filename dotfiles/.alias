@@ -1,7 +1,7 @@
 # Basic
-alias ls='ls --color=auto --group-directories-first'
-alias la="ls -A"
-alias ll="ls -lA"
+alias ls='exa -g --color=auto --group-directories-first'
+alias la="ls -a"
+alias ll="ls -la"
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias sctl='sudo systemctl'
@@ -30,13 +30,14 @@ alias tmc="vim ~/.tmux.conf"
 # xorg
 alias xrc="vim ~/.xinitrc"
 alias xpr="vim ~/.xprofile"
+alias c="xclip -f -selection clipboard | xclip"
 # suckless
 alias dwc="vim ~/.config/dwm/config.h"
 alias stc="vim ~/.config/st/config.h"
 alias dmc="vim ~/.config/dmenu/config.h"
 # wkon
-alias gh="cd && wkon home && refstatus"
-alias gw="cd $(cat $HOME/.config/.last_wkon) && wkon && refstatus"
+alias gh="cd && wkon home"
+alias gw='wkon last && cd "$(wkon last)" && wkon'
 # Folder
 alias blfm="cd ~/.config/BLFM && la"
 alias ms="cd ~/.config/BLFM/scripts && la"
