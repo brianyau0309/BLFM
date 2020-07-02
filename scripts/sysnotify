@@ -1,0 +1,19 @@
+#!/bin/sh
+# Show information of system
+# "dunst" is required
+
+msgId="991049"
+
+volumenum=$(echo $(amixer sget Master | grep 'Mono:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
+vicon=$(amixer sget Master | grep off >/dev/null &&
+  echo 🔇 ||
+  ( ([ $volumenum -gt 80 ] && echo 🔊) ||
+    ([ $volumenum -gt 20 ] && echo 🔉) ||
+    echo 🔈 )
+)
+
+brightness=$(xbacklight -get)
+
+msg="$vicon $volumenum%\n🌞 $brightness%"
+
+dunstify -a "System Control" -u low -I "$HOME/Downloads/setting.png" -r "$msgId" "System Control" "$msg"

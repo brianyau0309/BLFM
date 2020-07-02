@@ -1,7 +1,7 @@
 # Basic
 alias ls='exa -g --color=auto --group-directories-first'
 alias la="ls -a"
-alias ll="ls -la"
+alias ll="ls -la --git"
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias sctl='sudo systemctl'
@@ -16,13 +16,12 @@ alias vst="cd ~/.vim/after && ls"
 # bash
 alias brc="vim ~/.bashrc"
 alias bpr="vim ~/.bash_profile"
+alias al="vim ~/.alias"
 # zsh
 alias zrc="vim ~/.zshrc"
 alias zpr="vim ~/.zprofile"
 alias zal="vim ~/.zalias"
 alias zev="vim ~/.zshenv"
-# alias
-alias al="vim ~/.alias"
 # git
 alias g="git"
 # tmux
@@ -35,9 +34,11 @@ alias c="xclip -f -selection clipboard | xclip"
 alias dwc="vim ~/.config/dwm/config.h"
 alias stc="vim ~/.config/st/config.h"
 alias dmc="vim ~/.config/dmenu/config.h"
+# youtube-dl
+alias ytd.m4a="youtube-dl -f 'bestaudio[ext=m4a]'"
 # wkon
 alias gh="cd && wkon home"
-alias gw='wkon last && cd "$(wkon last)" && wkon'
+alias gw='wkon last && cd "$(wkon last)" && la && wkon'
 # Folder
 alias blfm="cd ~/.config/BLFM && la"
 alias ms="cd ~/.config/BLFM/scripts && la"

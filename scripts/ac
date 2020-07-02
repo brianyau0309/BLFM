@@ -1,21 +1,11 @@
 #!/bin/sh
 # Audio Control
 # "alsa-utils" is required
-# "dunst" is required
-msgId="991049"
-steps="${2:-5}"
+steps="${2:-3}"
 case "$1" in
   toggle) amixer sset Master toggle ;;
   set) amixer sset Master "$steps"% ;;
   up) amixer sset Master "$steps"%+ ;;
   down) amixer sset Master "$steps"%- ;;
 esac >/dev/null
-volumenum=$(echo $(amixer sget Master | grep 'Left:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
-vicon=$(amixer sget Master | grep off >/dev/null &&
-  echo 🔇 ||
-  ( ([ $volumenum -gt 80 ] && echo 🔊) ||
-    ([ $volumenum -gt 20 ] && echo 🔉) ||
-    echo 🔈 )
-)
-dunstify -a "Audio Change" -u low -r "$msgId" -I $HOME/.config/ac-icon.png "Volume Change" "$vicon $volumenum%"
-refstatus
+refstatus 2>/dev/null && sysnotify

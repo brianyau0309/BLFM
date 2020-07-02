@@ -15,7 +15,7 @@ printDate() {
 }
 
 printAudio() {
-  soundnum=$(echo $(amixer sget Master | grep 'Left:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
+  soundnum=$(echo $(amixer sget Master | grep 'Mono:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
   amixer sget Master | grep off >/dev/null &&
     echo 🔇 ||
     ( ([ $soundnum -gt 80 ] && echo 🔊) ||
@@ -24,20 +24,41 @@ printAudio() {
 }
 
 printMusic() {
-  pgrep mocp >/dev/null && [ ! "$(mocp -Q %file 2>/dev/null)" = ""  ] &&
-    ((mocp -i | grep PLAY >/dev/null) && echo "" || echo "") &&
-    mocp -Q %song
+  pgrep mocp >/dev/null && [ ! "$(mocp -M $HOME/.config/moc -Q %file 2>/dev/null)" = ""  ] &&
+    ((mocp -M $HOME/.config/moc -i 2>/dev/null | grep PLAY >/dev/null) && echo "" || echo "") &&
+    mocp -M $HOME/.config/moc -Q %song 2>/dev/null
+}
+
+printBattery() {
+  bat=$(cat /sys/class/power_supply/BAT0/capacity)
+  bat_status=$(cat /sys/class/power_supply/BAT0/status)
+  [ "$bat_status" = "Charging" ] && echo  ||
+    ( ([ $bat -gt 90 ] && echo ) ||
+      ([ $bat -gt 70 ] && echo ) ||
+      ([ $bat -gt 50 ] && echo ) ||
+      ([ $bat -gt 30 ] && echo ) ||
+      ([ $bat -gt 15 ] && echo ) ||
+      echo  )
+  echo "$bat%"
+}
+
+printInternet() {
+  ethernet=$(cat /sys/class/net/eno1/operstate)
+  wifi=$(cat /sys/class/net/wlp1s0//operstate)
+  [ "$ethernet" = "up" ] && echo   ||
+    ([ "$wifi" = "up" ] && echo  || echo 睊)
 }
 
 statusBar() {
   printMusic
   [ -z $(wkon anchor)  ] || echo "📁 $(wkon anchor | rev | cut -d'/' -f1 | rev)"
   printStorage
-  echo ' 90%'
+  printBattery
   printDate
   printAudio
   printNotification
-  echo 
+  printInternet
+
 }
 
 # Reset while enter xorg
