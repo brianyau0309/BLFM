@@ -5,7 +5,7 @@
 # (_)/___|___/_| |_|_|  \___|
 # Show git branch
 setopt prompt_subst
-gitbranch() { git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/  \1/' }
+gitbranch() { git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/' }
 
 # Enable Color
 autoload -U colors && colors
@@ -31,7 +31,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey "^?" backward-delete-char
-bindkey "^h" backward-delete-char
 
 # Auto cd
 setopt auto_cd
@@ -43,6 +42,7 @@ bindkey '^e' edit-command-line
 # Alias
 [ -f ~/.alias ] && source ~/.alias
 [ -f ~/.zalias ] && source ~/.zalias
+
 # Plugin
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
@@ -52,3 +52,6 @@ bindkey '^k' autosuggest-accept
 
 # Personal
 [ -z $(wkon anchor) ] || cd $(wkon anchor)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh"  ] && \. "$NVM_DIR/nvm.sh" --no-use

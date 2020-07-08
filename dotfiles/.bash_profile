@@ -2,7 +2,7 @@
 # ~/.bash_profile
 #
 export BLFM=$HOME/.config/BLFM
-export BROWSER=chromium
+export BROWSER=brave
 export EDITOR=vim
 export VISUAL=vim
 export NNN_COLORS='6123'

@@ -3,11 +3,11 @@
 "   \ \ / / | '_ ` _ \| '__/ __|
 "  _ \ V /| | | | | | | | | (__
 " (_) \_/ |_|_| |_| |_|_|  \___|
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+"if empty(glob('~/.vim/autoload/plug.vim'))
+  "silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    "\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
 
 " Leader Key
 let mapleader=" "
@@ -30,6 +30,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
 Plug 'junegunn/goyo.vim'
+Plug 'luochen1990/rainbow'
+Plug 'Yggdroot/indentLine'
 "Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
@@ -99,6 +101,8 @@ hi GitGutterDelete ctermbg=None
 hi GitGutterChangeDelete ctermbg=None
 " Goyo
 let g:goyo_width = 120
+" Rainbow
+let g:rainbow_active = 1
 
 " Function
 " Zoom
@@ -121,7 +125,7 @@ function! LocalListToggle() abort
     let t:locallist = 0
   else
     lopen
-    wincmd k
+    wincmd p
     let t:locallist = 1
   endif
 endfunction
@@ -131,7 +135,7 @@ command! LocalListToggle call LocalListToggle()
 noremap <silent> <F1> :silent! setlocal spell! spelllang=en_uk<CR>
 set pastetoggle=<F2>
 nnoremap <silent> K :silent! nohls<CR>
-" Tabs
+" Window move
 nnoremap <silent> <C-h> <C-w><C-h>
 nnoremap <silent> <C-j> <C-w><C-j>
 nnoremap <silent> <C-k> <C-w><C-k>
@@ -186,3 +190,4 @@ au BufNewFile,BufRead *.html ru html.vim
 au BufNewFile,BufRead *.py ru python.vim
 au BufNewFile,BufRead memo-* ru memo.vim
 au BufNewFile,BufRead *.tex ru tex.vim
+au filetype netrw ru netrw.vim

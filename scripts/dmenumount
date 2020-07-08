@@ -1,0 +1,88 @@
+#!/bin/sh
+# Mount filesystem by dmenu
+# Required sshfs to mount via ssh
+# Required simple-mtpfs to mount Andriod devices
+
+mountdrive() {
+  list=$(lsblk -lp | grep 'part $' | awk '{print $1" ("$4")"}')
+  [ -z "$list" ] && exit
+
+  selected=$(echo "$list" | dmenu -l 10 -p 'Mount')
+
+  [ -z "$selected" ] && exit ||
+    selected_path=$(echo $selected | awk '{print $1}')
+
+  mount_point="$(ls /mnt | awk '{print "/mnt/"$1}' | dmenu -p 'Mount point')"
+  [ -d "$mount_point" ] || create=$(echo "Yes\nNo" | dmenu -p "$mount_point do not exist. Create?")
+  [ "$create" = "Yes" ] && sudo mkdir -m770 "$mount_point" && sudo chgrp mnt "$mount_point"
+  [ "$create" = "No" ] && exit
+
+  sudo mount "$selected_path" "$mount_point" &&
+    notify-send "dmenumount" "Mounted $selected_path to $mount_point" ||
+    notify-send "dmenumount" "Fail to mount $selected_path"
+}
+
+mountsshfs() {
+  [ -f $HOME/.ssh/ssh_list ] || exit 1
+
+  list=$(grep "NAME:" ~/.ssh/ssh_list.bak | cut -d':' -f2)
+  [ -z "$list" ] && exit
+
+  selected=$(echo "Open config\n$list" | dmenu -l 10 -p "sshfs")
+  [ -z "$selected" ] && exit
+  [ "$selected" = "Open config" ] && st -e vim $HOME/.ssh/ssh_list.bak && exit
+
+  info=$(sed -n "/$selected/,/^$/p" ssh_list.bak)
+  echo "$info"
+  # USER=$(grep)
+  # HOST=$(grep)
+  # PORT=$(grep)
+  # IDEN=$(grep)
+  # PATH=$(grep)
+  # [ -z "$IDEN" ] && PASS=$(dmenu -P -p "Password")
+
+  # sshfs $USER@$HOST:/ $mount_point -p $PORT -o IdentityFile="$IDEN"
+}
+
+mountAndroid() {
+  list=$(simple-mtpfs --list-devices)
+  [ -z "$list" ] && exit
+
+  selected=$(echo $list | dmenu -l 10 -p "Android Device(s)")
+  [ -z "$selected" ] && exit
+
+  mount_point="$(ls /mnt | awk '{print "/mnt/"$1}' | dmenu -p 'Mount point')"
+  [ -d "$mount_point" ] || create=$(echo "Yes\nNo" | dmenu -p "$mount_point do not exist. Create?")
+  [ "$create" = "Yes" ] && sudo mkdir -m770 "$mount_point" && sudo chgrp mnt "$mount_point"
+  [ "$create" = "No" ] && exit
+
+  simple-mtpfs --device "${selected%%: *}" "$mount_point" >/dev/null &&
+    notify-send "dmenumount" "Mounted ${selected##*: } to $mount_point" ||
+    (echo "OK" | dmenu -p "You may need to unlock the device and grant permission" &&
+    simple-mtpfs --device "${selected%%: *}" "$mount_point" >/dev/null &&
+    notify-send "dmenumount" "Mounted ${selected##*: } to $mount_point" ||
+    notify-send "dmenumount" "Fail to mount ${selected##*: }")
+}
+
+case "$1" in
+  m|mount)
+    option=$(echo "Mount Drive\nMount sshfs\nMount Android Device" | dmenu -l 3 -p 'dmenumount')
+    case $option in
+      "Mount Drive") mountdrive ;;
+      "Mount sshfs") mountsshfs ;;
+      "Mount Android Device") mountAndroid ;;
+    esac
+    ;;
+  u|umount)
+    mountlist=$(mount | grep '/mnt' | awk '{print $3 " mounted " $1}')
+    [ -z "$mountlist" ] && notify-send "dmenumount" "No umountable drive" && exit
+    umount=$(echo "$mountlist" | dmenu -l 10 -p "Umount")
+    [ -z "$umount" ] && exit
+    umountpath=$(echo $umount | cut -d ' ' -f 1)
+    (echo $umount | grep "/dev/" >/dev/null && sudo umount "$umountpath" ||
+      fusermount -u "$umountpath") &&
+      notify-send "dmenumount" "Unmounted $umountpath" ||
+      notify-send "dmenumount" "Fail to unmount $umountpath"
+    ;;
+  *) echo "dmenumount need a option"
+esac

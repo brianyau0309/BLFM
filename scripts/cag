@@ -6,7 +6,7 @@ appsDir="$HOME/.local/chromium_apps"
 link=$(xclip -o)
 appname=$(echo | dmenu -p "App Name for $link:")
 [ "$appname" = "" ] && exit
-echo "chromium --app=\"$link\"" > "$appsDir/$appname"
+echo "brave --app=\"$link\"" > "$appsDir/$appname"
 chmod +x $appsDir/*
 
 #appsList="$HOME/.local/share/applications"

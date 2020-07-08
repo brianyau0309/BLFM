@@ -1,0 +1,46 @@
+#!/bin/sh
+
+msgId="991050"
+
+connecting=$(nmcli device | grep "wifi " | awk '{print $4}')
+[ "$connecting" = '--' ] && option="Select Wifi" || option=$(echo "Select Wifi\nDisconnect: $connecting" | dmenu -l 2 -p Option)
+
+[ -z "$option" ] && exit
+if [ "$option" = "Select Wifi" ];
+then
+  dunstify -r "$msgId" "dmenuwifi" "Scanning Wifi..." &&
+  wifi=$(nmcli device wifi list | sed -e 1d -e '/^*/d' -e 's/^[ \t ]*//' | dmenu -l 10 -p "Wifi" | awk '{print $2}')
+
+  [ -z "$wifi" ] && exit 1
+  nmcli connection | grep "$wifi" >/dev/null &&
+    dunstify -r "$msgId" "dmenuwifi" "Autoconnecting $wifi" &&
+    nmcli device wifi connect "$wifi" >/dev/null
+
+  connecting=$(nmcli device | grep "wifi " | awk '{print $4}') &&
+    [ "$connecting" = "$wifi" ] &&
+    dunstify -r "$msgId" "dmenuwifi" "$wifi Connected" &&
+    refstatus &&
+    exit
+
+  nmcli connection | grep "$wifi" >/dev/null &&
+    dunstify -r "$msgId" "dmenuwifi" "Autoconnect Fail\nPlease type in password"
+
+  password=$(dmenu -P -p "Wifi Password")
+
+  [ -z "$password" ] && exit 1
+  dunstify -r "$msgId" "dmenuwifi" "Connecting $wifi " &&
+    nmcli device wifi connect "$wifi" password "$password" >/dev/null &&
+    connecting=$(nmcli device | grep "wifi " | awk '{print $4}')
+
+  [ "$connecting" = "$wifi" ] &&
+    dunstify -r "$msgId" "dmenuwifi" "$wifi Connected" ||
+    dunstify -r "$msgId" "dmenuwifi" "Fail to connect $wifi"
+
+else
+  device=$(nmcli device | grep "wifi " | awk '{print $1}')
+  nmcli device disconnect $device >/dev/null &&
+    dunstify -r "$msgId" "dmenuwifi" "$wifi Disconnected"
+
+fi
+
+refstatus

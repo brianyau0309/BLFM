@@ -4,8 +4,18 @@
 
 msgId="991049"
 
-volumenum=$(echo $(amixer sget Master | grep 'Mono:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
-vicon=$(amixer sget Master | grep off >/dev/null &&
+# alsa, need alsa-utils
+#volumenum=$(echo $(amixer sget Master | grep 'Mono:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
+#vicon=$(amixer sget Master | grep off >/dev/null &&
+  #echo 🔇 ||
+  #( ([ $volumenum -gt 80 ] && echo 🔊) ||
+    #([ $volumenum -gt 20 ] && echo 🔉) ||
+    #echo 🔈 )
+#)
+
+# pulsemixer, need pulsemixer
+volumenum=$(pulsemixer --get-volume | cut -d' ' -f1)
+vicon=$( [ $(pulsemixer --get-mute) -eq 1 ] &&
   echo 🔇 ||
   ( ([ $volumenum -gt 80 ] && echo 🔊) ||
     ([ $volumenum -gt 20 ] && echo 🔉) ||
@@ -16,4 +26,4 @@ brightness=$(xbacklight -get)
 
 msg="$vicon $volumenum%\n🌞 $brightness%"
 
-dunstify -a "System Control" -u low -I "$HOME/Downloads/setting.png" -r "$msgId" "System Control" "$msg"
+dunstify -a "System Control" -u low -I "$HOME/.config/icons/setting.png" -r "$msgId" "System Control" "$msg"

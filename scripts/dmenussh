@@ -1,0 +1,9 @@
+#!/bin/sh
+# Required dmenu and st
+
+# If list of ssh not exist, quit.
+[ -f $HOME/.ssh/ssh_list ] || exit 1
+command=$(cat $HOME/.ssh/ssh_list | dmenu -l 10 -p SSH)
+
+[ -z "$command" ] || # Escape to quit
+  st -t "$(echo "${command%% command:*}")" -e $(echo "${command##* command:}")

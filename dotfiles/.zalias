@@ -3,6 +3,6 @@
 alias -g x='xclip -selection clipboard'
 
 alias -s pdf=zathura
-alias -s {py,js,jsx,css,html,tex,md,txt}=vim
+alias -s {py,js,jsx,css,html,vue,tex,md,txt}=vim
 alias -s {jpg,png,jepg,gif.bmp}=sxiv
-alias -s {doc,docx,ppt,pptx}=libreoffice
+alias -s {doc,docx,ppt,pptx,xls,xlsx}=libreoffice

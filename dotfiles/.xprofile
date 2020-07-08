@@ -2,9 +2,8 @@
 #xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
 #xrandr --addmode Virtual-1 "1920x1080_60.00"
 #resolution full noreset
-
 setbg random nonotify
-picom -cf -D 3 -I 0.04 -b
+picom -cf -D 3 -I 0.04 -b &
 dunst &
 dwm_status &
 setxkbmap -option caps:swapescape

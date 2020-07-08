@@ -11,15 +11,24 @@ printStorage() {
 }
 
 printDate() {
-  date '+🗓 %a %d-%b %H:%M:%S'
+  date '+🗓 %b-%d %a %H:%M:%S'
 }
 
 printAudio() {
-  soundnum=$(echo $(amixer sget Master | grep 'Mono:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
-  amixer sget Master | grep off >/dev/null &&
+  # alsa
+  #volumenum=$(echo $(amixer sget Master | grep 'Mono:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
+  #amixer sget Master | grep off >/dev/null &&
+    #echo 🔇 ||
+    #( ([ $volumenum -gt 80 ] && echo 🔊) ||
+      #([ $volumenum -gt 20 ] && echo 🔉) ||
+      #echo 🔈 )
+
+  # pulseaudio
+  volumenum=$(pulsemixer --get-volume | cut -d' ' -f1)
+  [ $(pulsemixer --get-mute) -eq 1 ] &&
     echo 🔇 ||
-    ( ([ $soundnum -gt 80 ] && echo 🔊) ||
-      ([ $soundnum -gt 20 ] && echo 🔉) ||
+    ( ([ $volumenum -gt 80 ] && echo 🔊) ||
+      ([ $volumenum -gt 20 ] && echo 🔉) ||
       echo 🔈 )
 }
 
@@ -46,7 +55,7 @@ printInternet() {
   ethernet=$(cat /sys/class/net/eno1/operstate)
   wifi=$(cat /sys/class/net/wlp1s0//operstate)
   [ "$ethernet" = "up" ] && echo   ||
-    ([ "$wifi" = "up" ] && echo  || echo 睊)
+    ([ "$wifi" = "up" ] && echo   || echo 睊)
 }
 
 statusBar() {
