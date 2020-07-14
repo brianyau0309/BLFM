@@ -4,6 +4,7 @@
 #  _ | |_) | (_| \__ \ | | | | | (__
 # (_)|_.__/ \__,_|___/_| |_|_|  \___|
 
+
 [[ $- != *i* ]] && return # If not running interactively, don't do anything
 export HISTFILE=$HOME/.cache/.bash_history
 [ -f ~/.config/.fzf.bash ] && source ~/.config/.fzf.bash # fzf

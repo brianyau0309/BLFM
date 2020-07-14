@@ -2,7 +2,8 @@
 
 alias -g x='xclip -selection clipboard'
 
-alias -s pdf=zathura
-alias -s {py,js,jsx,css,html,vue,tex,md,txt}=vim
-alias -s {jpg,png,jepg,gif.bmp}=sxiv
-alias -s {doc,docx,ppt,pptx,xls,xlsx}=libreoffice
+alias -s {pdf,ebup}='devour zathura'
+alias -s {mp4,mp3,m4a,wav,mkv,avi,flv}='devour mpv'
+alias -s {jpg,png,jepg,gif.bmp}='devour sxiv'
+alias -s {doc,docx,ppt,pptx,xls,xlsx}='devour libreoffice'
+alias -s {py,js,jsx,css,html,vue,tex,md,txt,conf,c,cshtml,cpp,cs,go}=vim

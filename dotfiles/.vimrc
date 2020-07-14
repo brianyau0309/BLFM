@@ -19,6 +19,8 @@ let &t_EI="\<esc>[2 q"
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
+Plug 'sheerun/vim-polyglot'
+Plug 'mcchrish/nnn.vim'
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
@@ -32,7 +34,7 @@ Plug 'ap/vim-css-color'
 Plug 'junegunn/goyo.vim'
 Plug 'luochen1990/rainbow'
 Plug 'Yggdroot/indentLine'
-"Plug 'Valloric/YouCompleteMe'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Basic
@@ -49,6 +51,7 @@ set smartindent linebreak
 set foldmethod=manual
 " Highlight
 set hlsearch smartcase ignorecase
+hi Comment ctermfg=67
 hi QuickFixLine cterm=None
 hi Search ctermbg=242
 hi SpellBad ctermbg=124
@@ -64,36 +67,39 @@ set tabstop=2 shiftwidth=2 expandtab
 " Split
 set splitbelow splitright
 set fillchars+=vert:\ 
-" Wildmenu and Finder
-set path+=**
+" Wildmenu
 set wildmenu wildignorecase
 set wildignore+=/usr/include/**,**/node_modules/**,**/__pycache__/**,**/.git/**,**/pvm/python/**,**/pvm/venv/**
-" Disable comment continuation
-au BufNewFile,BufRead * set formatoptions-=cro
-" Set markdown syntax for my memo
-au BufNewFile,BufRead memo-* set ft=markdown
 " Show trailing space
 match ExtraWhitespace / \+$/
-" Center while enter insert mode
-autocmd Insertenter * norm zz
 
 " Plug setting
+" nnn
+let g:nnn#command = 'nnn -edH'
+let g:nnn#layout = { 'window': { 'width': 0.4, 'height': 0.5, 'highlight': 'SpecialKey', 'bordor': 'sharp' } }
+let g:nnn#action = { '<C-t>': 'tab split',
+                   \ '<C-x>': 'split',
+                   \ '<C-v>': 'vsplit' }
 " netrw
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_liststyle = 3
-let g:netrw_winsize = 15
+let g:netrw_winsize = 10
 let g:netrw_list_hide = netrw_gitignore#Hide()
 let g:netrw_list_hide .= ',\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_hide = 0
 " ale
 let g:ale_linters = { 'python': ['flake8'],
                     \ 'c': ['gcc'],
-                    \ 'javascript': ['eslint'] }
+                    \ 'javascript': ['eslint'],
+                    \ 'vue': ['eslint'] }
 let g:ale_linters_explicit = 1
 " vim-closetag
-let g:closetag_filenames = "*.html,*.jsx"
+let g:closetag_filenames = '*.xml,*.html,*.cshtml,*.js,*.jsx,*.vue'
+" fzf.vim
+set rtp+=~/.config/.fzf
+let g:fzf_buffers_jump = 1
 " Git Gutter
 hi GitGutterAdd ctermbg=None
 hi GitGutterChange ctermbg=None
@@ -103,6 +109,12 @@ hi GitGutterChangeDelete ctermbg=None
 let g:goyo_width = 120
 " Rainbow
 let g:rainbow_active = 1
+let g:rainbow_conf = {
+\ 'separately': {
+\   'html': 0,
+\   'vue': 0,
+\ }
+\}
 
 " Function
 " Zoom
@@ -136,20 +148,25 @@ noremap <silent> <F1> :silent! setlocal spell! spelllang=en_uk<CR>
 set pastetoggle=<F2>
 nnoremap <silent> K :silent! nohls<CR>
 " Window move
-nnoremap <silent> <C-h> <C-w><C-h>
-nnoremap <silent> <C-j> <C-w><C-j>
-nnoremap <silent> <C-k> <C-w><C-k>
-nnoremap <silent> <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+tnoremap <C-h> <C-w><C-h>
+tnoremap <C-j> <C-w><C-j>
+tnoremap <C-k> <C-w><C-k>
+tnoremap <C-l> <C-w><C-l>
 " Replace
 nnoremap <leader>r :%s//gI<Left><Left><Left>
-vnoremap <leader>r :%s//gI<Left><Left><Left>
-" Find & Buffer
-nnoremap <leader>f :find<Space>
-nnoremap <leader>tf :tabf<Space>
-nnoremap <leader>b :b<Space>
-nnoremap <leader>o :browse oldfiles<CR>
+vnoremap <leader>r :s//gI<Left><Left><Left>
+" fzf.vim
+nnoremap <silent> <leader>f :silent! Files<CR>
+nnoremap <silent> <leader>b :silent! Buffers<CR>
+nnoremap <silent> <leader>/ :silent! BLines<CR>
+nnoremap <silent> <leader>o :silent! History<CR>
 " Terminal
-nnoremap <leader>th :term<CR>
+nnoremap <leader>th :term ++rows=12<CR>
+nnoremap <leader>tn :tab term<CR>
 " Splite
 nnoremap <leader>= <C-w>t<C-w>K
 nnoremap <leader>" <C-w>t<C-w>H
@@ -181,11 +198,21 @@ vnoremap <Right> <nop>
 ca help tab help
 
 " Auto Command
+" Disable comment continuation
+au BufNewFile,BufRead * set formatoptions-=cro
+" Set markdown syntax for my memo
+au BufNewFile,BufRead memo-* set ft=markdown
+" Center while enter insert mode
+au Insertenter * norm zz
+" On Insert
+au InsertEnter * let save_cwd = getcwd() | set autochdir
+au InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 " On Write
 au BufWritePost config.h !cd '%:p:h' && sudo make clean install && cd ~-
 au BufWritePost *.tex !pdflatex -quiet -output-directory="%:p:h" "%:p" && notify-send -u low --icon="$HOME/.cache/icon/pdficon2.png" "%:r.pdf" "$(pdfcount '%:p:r.pdf') words"
 " Snippet
-au BufNewFile,BufRead *.css ru css.vim
+au BufNewFile,BufRead *.xml,*.html,*.cshtml,*.js,*.jsx,*.vue inoremap <buffer> <expr> <cr> getline(".")[col(".")-2:col(".")-1]=="><" ? "<cr><esc>O" : "<cr>"
+au BufNewFile,BufRead *.css,*.sass ru css.vim
 au BufNewFile,BufRead *.html ru html.vim
 au BufNewFile,BufRead *.py ru python.vim
 au BufNewFile,BufRead memo-* ru memo.vim

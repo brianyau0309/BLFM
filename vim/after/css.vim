@@ -1,6 +1,6 @@
 " Sinppet for CSS
-ia <buffer> mdmax @media only screen and (max-width:px) {}<Left><CR><Esc>kf:a
-ia <buffer> mdmin @media only screen and (min-width:px) {}<Left><CR><Esc>kf:a
+ia <buffer> mqmax @media only screen and (max-width:px) {}F:a
+ia <buffer> mqmin @media only screen and (min-width:px) {}F:a
 ia <buffer> wksb ::-webkit-scrollbar{}<Left><CR><Backspace>
 
 " attribute

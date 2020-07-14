@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 export BLFM=$HOME/.config/BLFM
 export BROWSER=brave
 export EDITOR=vim
@@ -11,6 +13,6 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;94m'
 export LESSHISTFILE=$HOME/.cache/.lesshst
-export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow -E ".cache" -E ".local" -E ".git" -E "pvm" -E "chromium" -E "plugged" -E ".fzf" -E ".minecraft" -E "obs-studio" -E "libreoffice" -E "GIMP" -E "discord" -E "go" -E "BraveSoftware" -E ".nvm" -E "VirtualBox" -E ".steam""
+export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow -E ".cache" -E ".local" -E ".git" -E "pvm" -E "chromium" -E "plugged" -E ".fzf" -E ".minecraft" -E "obs-studio" -E "libreoffice" -E "GIMP" -E "discord" -E "go" -E "BraveSoftware" -E ".nvm" -E "VirtualBox" -E ".steam" -E ".nuget" -E ".aspnet" -E ".dotnet" -E ".vscode-oss" -E 'Code - OSS' -E '.npm'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export NODE_REPL_HISTORY=""
