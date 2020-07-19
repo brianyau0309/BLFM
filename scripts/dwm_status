@@ -62,6 +62,12 @@ printInternet() {
     ([ "$wifi" = "up" ] && echo   || echo 睊)
 }
 
+printBluetooth() {
+  btpower=$(bluetoothctl show | grep Powered: | cut -d' ' -f2)
+  [ $btpower = "yes" ] &&
+  echo 
+}
+
 statusBar() {
   printMusic
   [ -z $(wkon anchor)  ] || echo "📁 $(wkon anchor | rev | cut -d'/' -f1 | rev)"
@@ -70,8 +76,8 @@ statusBar() {
   printDate
   printAudio
   printNotification
+  printBluetooth
   printInternet
-
 }
 
 # Reset while enter xorg
@@ -79,5 +85,5 @@ statusBar() {
 
 while :; do
   xsetroot -name " $( statusBar | tr '\n' ' ')" #Change newline to space
-  sleep 10
+  sleep 15
 done

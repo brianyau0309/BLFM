@@ -1,7 +1,8 @@
 # Basic
 alias ls='exa -g --color=auto --group-directories-first'
 alias la="ls -a"
-alias ll="ls -la --git"
+alias ll="ls -l --git"
+alias lla="ls -la --git"
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias sctl='sudo systemctl'
@@ -9,34 +10,37 @@ alias sdn="sudo shutdown -h now"
 alias pt="sudo powertop"
 # pacman
 alias p="sudo pacman"
-# vim
-alias v="vim"
-alias sv="sudo vim"
-alias vrc="vim ~/.vimrc"
+# vim/neovim
+alias v="nvim"
+alias vim="nvim"
+alias sv="sudo v"
+alias vrc="v ~/.config/nvim/init.vim"
 alias vst="cd ~/.vim/after && ls"
 # bash
-alias brc="vim ~/.bashrc"
-alias bpr="vim ~/.bash_profile"
-alias al="vim ~/.alias"
+alias brc="v ~/.bashrc"
+alias bpr="v ~/.bash_profile"
+alias al="v ~/.alias"
 # zsh
-alias zrc="vim ~/.zshrc"
-alias zpr="vim ~/.zprofile"
-alias zal="vim ~/.zalias"
-alias zev="vim ~/.zshenv"
+alias zrc="v ~/.zshrc"
+alias zpr="v ~/.zprofile"
+alias zal="v ~/.zalias"
+alias zev="v ~/.zshenv"
 # git
 alias g="git"
 # tmux
-alias tmc="vim ~/.tmux.conf"
+alias tmc="v ~/.tmux.conf"
 # xorg
-alias xrc="vim ~/.xinitrc"
-alias xpr="vim ~/.xprofile"
+alias xrc="v ~/.xinitrc"
+alias xpr="v ~/.xprofile"
 alias c="xclip -f -selection clipboard | xclip"
 # suckless
-alias dwc="vim ~/.config/dwm/config.h"
-alias stc="vim ~/.config/st/config.h"
-alias dmc="vim ~/.config/dmenu/config.h"
+alias dwc="v ~/.config/dwm/config.h"
+alias stc="v ~/.config/st/config.h"
+alias dmc="v ~/.config/dmenu/config.h"
 # youtube-dl
 alias ytd.m4a="youtube-dl -f 'bestaudio[ext=m4a]'"
+# mpv
+alias mpv.webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
 # wkon
 alias gh="cd && wkon home"
 alias gw='wkon last && cd "$(wkon last)" && la && wkon'

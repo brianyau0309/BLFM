@@ -48,7 +48,7 @@ set pumheight=15
 set nocompatible
 set number relativenumber
 set updatetime=200
-set viminfo+=n~/.vim/viminfo
+set viminfo+=n~/.vim/nviminfo
 " Indent & Linebreak
 set smartindent linebreak
 " Fold

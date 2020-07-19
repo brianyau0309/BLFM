@@ -1,0 +1,15 @@
+{
+  "suggest.noselect": true,
+  "diagnostic.refreshOnInsertMode": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "graphql"
+  ],
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true
+}

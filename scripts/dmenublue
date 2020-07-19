@@ -1,0 +1,20 @@
+#!/bin/sh
+
+btpower=$([ $(bluetoothctl show | grep Powered: | cut -d' ' -f2) = 'yes' ] &&
+  echo on ||
+  echo off
+)
+option=$(echo "Turn On/Off\nOpen Bluetoothctl" | dmenu -i -l 2 -p "Bluetooth: $btpower")
+
+case "$option" in
+  "Turn On/Off")
+    echo $btpower
+    [ "$btpower" = 'on' ] &&
+      (sudo bluetoothctl power off) ||
+      (sudo bluetoothctl power on)
+    refstatus
+    ;;
+  "Open Bluetoothctl")
+    st -e bluetoothctl
+    ;;
+esac

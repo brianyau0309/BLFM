@@ -1,10 +1,10 @@
 #!/bin/sh
 # Mount filesystem by dmenu
 # Required sshfs to mount via ssh
-# Required simple-mtpfs to mount Andriod devices
+# Required simple-mtpfs to mount Android devices
 
 mountpoint() {
-  mount_point="$(ls /mnt | awk '{print "/mnt/"$1}' | dmenu -p 'Mount point')"
+  mount_point="/mnt/$(ls /mnt | dmenu -p 'Mount point')"
   [ -z "$mount_point" ] && exit
   [ -d "$mount_point" ] || create=$(echo "Yes\nNo" | dmenu -p "$mount_point do not exist. Create?")
   [ "$create" = "Yes" ] && sudo mkdir -m770 "$mount_point" && sudo chgrp mnt "$mount_point"
@@ -13,9 +13,9 @@ mountpoint() {
 
 mountdrive() {
   list=$(lsblk -lp | grep 'part $' | awk '{print $1" ("$4")"}')
-  [ -z "$list" ] && exit
+  [ -z "$list" ] && notify-send "dmenumount" "No mountable drive" && exit
 
-  selected=$(echo "$list" | dmenu -l 10 -p 'Mount')
+  selected=$(echo "$list" | dmenu -i -l 10 -p 'Mount')
 
   [ -z "$selected" ] && exit ||
     selected_path=$(echo $selected | awk '{print $1}')
@@ -28,15 +28,15 @@ mountdrive() {
 }
 
 mountsshfs() {
-  ssh_list="$HOME/.ssh/ssh_list.bak"
+  ssh_list="$HOME/.ssh/ssh_list"
   [ -f $ssh_list ] || exit 1
 
   list=$(grep "NAME:" $ssh_list | cut -d':' -f2)
   [ -z "$list" ] && exit
 
-  selected=$(echo "Open config\n$list" | dmenu -l 10 -p "sshfs")
+  selected=$(echo "Open config\n$list" | dmenu -i -l 10 -p "sshfs")
   [ -z "$selected" ] && exit
-  [ "$selected" = "Open config" ] && st -e vim $HOME/.ssh/ssh_list.bak && exit
+  [ "$selected" = "Open config" ] && st -e vim $HOME/.ssh/ssh_list && exit
 
   info=$(sed -n "/$selected/,/^$/p" $ssh_list)
   user=$(echo "$info" | grep 'USER:' | sed -e 's/USER://')
@@ -44,10 +44,18 @@ mountsshfs() {
   port=$(echo "$info" | grep 'PORT:' | sed -e 's/PORT://')
   [ -z "$port" ] && port=22
   iden=$(echo "$info" | grep 'IDEN:' | sed -e 's/IDEN://')
-  path=$(echo "$info" | grep 'PATH:' | sed -e 's/PATH://')
-  mount_point=$(echo "$info" | grep 'MTPT:' | sed -e 's/MTPT://')
 
-  [ -z $mount_point ] && mountpoint
+  select_mount=$(echo "$info" | grep 'PATH:' | sed -e 's/PATH://')
+
+  [ $(echo "$select_mount" | wc -l) = 1 ] &&
+    path_mount="$(echo "$select_mount")" ||
+    path_mount="$(echo "$select_mount" | dmenu -i -l 10 -p 'Select Mount')"
+
+  echo "$path_mount"
+  [ -z "$path_mount" ] && exit
+
+  path=$(echo ${path_mount%%>*})
+  mount_point=$(echo ${path_mount##*>})
 
   [ -z "$iden" ] &&
     dmenu -P -p "Password" | sshfs $user@$host:$path $mount_point -p $port -o password_stdin ||
@@ -58,16 +66,16 @@ mountsshfs() {
 
 mountAndroid() {
   list=$(simple-mtpfs --list-devices)
-  [ -z "$list" ] && exit
+  [ -z "$list" ] && notify-send "dmenumount" "No mountable Android device" && exit
 
-  selected=$(echo $list | dmenu -l 10 -p "Android Device(s)")
+  selected=$(echo $list | dmenu -i -l 10 -p "Android Device(s)")
   [ -z "$selected" ] && exit
 
   mountpoint
 
   simple-mtpfs --device "${selected%%: *}" "$mount_point" >/dev/null &&
     notify-send "dmenumount" "Mounted ${selected##*: } to $mount_point" ||
-    (echo "OK" | dmenu -p "You may need to unlock the device and grant permission" &&
+    (echo "OK" | dmenu -p "Fail to Mount, you may need to unlock the device and grant permission" &&
     simple-mtpfs --device "${selected%%: *}" "$mount_point" >/dev/null &&
     notify-send "dmenumount" "Mounted ${selected##*: } to $mount_point" ||
     notify-send "dmenumount" "Fail to mount ${selected##*: }")
@@ -75,7 +83,7 @@ mountAndroid() {
 
 case "$1" in
   m|mount)
-    option=$(echo "Mount Drive\nMount sshfs\nMount Android Device" | dmenu -l 3 -p 'dmenumount')
+    option=$(echo "Mount Drive\nMount sshfs\nMount Android Device" | dmenu -i -l 3 -p 'dmenumount')
     case $option in
       "Mount Drive") mountdrive ;;
       "Mount sshfs") mountsshfs ;;
@@ -85,7 +93,7 @@ case "$1" in
   u|umount)
     mountlist=$(mount | grep '/mnt' | awk '{print $3 " mounted " $1}')
     [ -z "$mountlist" ] && notify-send "dmenumount" "No umountable drive" && exit
-    umount=$(echo "$mountlist" | dmenu -l 10 -p "Umount")
+    umount=$(echo "$mountlist" | dmenu -i -l 10 -p "Umount")
     [ -z "$umount" ] && exit
     umountpath=$(echo $umount | cut -d ' ' -f 1)
     (echo $umount | grep "/dev/" >/dev/null && sudo umount "$umountpath" ||

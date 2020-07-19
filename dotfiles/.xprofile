@@ -6,4 +6,8 @@ setbg random nonotify
 picom -cf -D 3 -I 0.04 -b &
 dunst &
 dwm_status 2>/dev/null &
+pulseeffects --gapplication-service >/dev/null &
+anamnesis --start &
+fcitx &
+sudo ifconfig eno1 down &
 setxkbmap -option caps:swapescape
