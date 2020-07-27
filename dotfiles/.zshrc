@@ -11,7 +11,11 @@ gitbranch() { git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 autoload -U colors && colors
 
 # PROMPT
-PS1='%B%F{yello}[%1~]%b%f %(?.😆.😭) '
+if [ "$(whoami)" = 'root' ]; then
+  PS1='%B%F{yello}[%1~]%b%f 😎 '
+else
+  PS1='%B%F{yello}[%1~]%b%f %(?.😆.😭) '
+fi
 RPROMPT='%B%F{green}$(gitbranch)%b%f'
 
 # History

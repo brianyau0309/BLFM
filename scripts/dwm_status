@@ -11,18 +11,10 @@ printStorage() {
 }
 
 printDate() {
-  date '+🗓 %b-%d %a %H:%M:%S'
+  date '+🗓 %a %d-%b %H:%M'
 }
 
 printAudio() {
-  # alsa
-  #volumenum=$(echo $(amixer sget Master | grep 'Mono:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
-  #amixer sget Master | grep off >/dev/null &&
-    #echo 🔇 ||
-    #( ([ $volumenum -gt 80 ] && echo 🔊) ||
-      #([ $volumenum -gt 20 ] && echo 🔉) ||
-      #echo 🔈 )
-
   # pulseaudio
   volumenum=$(pulsemixer --get-volume | cut -d' ' -f1)
   [ $(pulsemixer --get-mute) -eq 1 ] &&

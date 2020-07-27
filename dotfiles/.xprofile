@@ -2,12 +2,12 @@
 #xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
 #xrandr --addmode Virtual-1 "1920x1080_60.00"
 #resolution full noreset
-setbg random nonotify
+setbg reset nonotify
 picom -cf -D 3 -I 0.04 -b &
 dunst &
 dwm_status 2>/dev/null &
-pulseeffects --gapplication-service >/dev/null &
+pulseeffects --gapplication-service >/dev/null 2>/dev/null &
 anamnesis --start &
-fcitx &
-sudo ifconfig eno1 down &
+fcitx >/dev/null 2>/dev/null &
+fusuma >/dev/null 2>/dev/null &
 setxkbmap -option caps:swapescape

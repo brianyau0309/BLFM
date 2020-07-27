@@ -1,11 +1,11 @@
 #!/bin/sh
 # Backlight Control
 
-steps="${2:-10}"
+num="${2:-5}"
 case "$1" in
-  set) sudo xbacklight -set "$steps" -step 5 ;;
-  up) sudo xbacklight -inc "$steps" -step 5 ;;
-  down) sudo xbacklight -dec "$steps" -step 5 ;;
+  set) sudo xbacklight -set "$num" -step 5 ;;
+  up) sudo xbacklight -inc "$num" -step 5 ;;
+  down) sudo xbacklight -dec "$num" -step 5 ;;
   *) echo "Invalid argument" && exit ;;
 esac >/dev/null
 sysnotify

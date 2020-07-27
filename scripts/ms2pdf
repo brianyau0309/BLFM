@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ "$(echo ${1#*.})" = 'ms' ] &&
+  groff -ms -rHY=0 $1 -T pdf > ${1%.*}.pdf ||
+  echo "ms2pdf Error: Please input a .ms file"

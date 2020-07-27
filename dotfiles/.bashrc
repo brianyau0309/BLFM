@@ -11,7 +11,9 @@ export HISTFILE=$HOME/.cache/.bash_history
 [ -f ~/.alias ] && source ~/.alias # alias
 shopt -s autocd # auto cd
 
-PS1='\e[1m\e[93m[\W] $([ $? = 0 ] && echo "😆" || echo "😭")\e[0m '
+[ "$(whoami)" = 'root' ] &&
+  PS1='\e[1m\e[93m[\W] 😎\e[0m ' ||
+  PS1='\e[1m\e[93m[\W] $([ $? = 0 ] && echo "😆" || echo "😭")\e[0m '
 
 [ -z $(wkon anchor) ] || cd $(wkon anchor)
 

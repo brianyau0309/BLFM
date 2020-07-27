@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/brian/Workdesk/practice/react/learn-redux'
+let g:netrw_dirhist_5='/home/brian/Workdesk/practice/react/learn-redux/src'
+let g:netrw_dirhist_4='/home/brian/Workdesk/practice/react/learn-redux/src/actions'
+let g:netrw_dirhist_3='/etc/cron.weekly'
+let g:netrw_dirhist_2='/home/brian/Workdesk/practice/react_practice/learn-redux'
+let g:netrw_dirhist_1='/home/brian/Workdesk/clang'

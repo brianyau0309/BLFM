@@ -1,0 +1,43 @@
+swipe:
+  3:
+    left:
+      command: 'xdotool key alt+shift+Tab' # Previous active tag
+    right:
+      command: 'xdotool key alt+Tab' # Next active tag
+    up:
+      command: 'xdotool key super+f' # Toggle full screen
+    down:
+      command: 'xdotool key super+f' # Toggle full screen
+  4:
+    left:
+      command: 'xdotool key super+q' # Close window
+    right:
+      command: 'xdotool key super+shift+space' # Change layout
+    up:
+      command: 'xdotool key super+Tab'
+    down:
+      command: 'xdotool key super+1'
+
+pinch:
+  2:
+    in:
+      command: 'xdotool key ctrl+plus' # Zoom in
+    out:
+      command: 'xdotool key ctrl+minus' # Zoom out
+
+rotate:
+  3:
+    clockwise:
+      command: 'xdotool key XF86AudioRaiseVolume' # Raise Volume
+    counterclockwise:
+      command: 'xdotool key XF86AudioLowerVolume' # Lower Volume
+  4:
+    clockwise:
+      command: 'xdotool key XF86MonBrightnessUp' # Increase Brightness
+    counterclockwise:
+      command: 'xdotool key XF86MonBrightnessDown' # Decrease Brightness
+
+threshold:
+  swipe: 0.3
+  pinch: 0.8
+  rotate: 0.2

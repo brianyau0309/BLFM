@@ -13,7 +13,7 @@ alias p="sudo pacman"
 # vim/neovim
 alias v="nvim"
 alias vim="nvim"
-alias sv="sudo v"
+alias sv="sudo nvim"
 alias vrc="v ~/.config/nvim/init.vim"
 alias vst="cd ~/.vim/after && ls"
 # bash
