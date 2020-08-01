@@ -22,10 +22,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 Plug 'ap/vim-css-color'
@@ -37,6 +38,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'mcchrish/nnn.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" coc-pairs
+" coc-tsserver
+" coc-python
+" coc-json
+" coc-css
 call plug#end()
 
 
@@ -45,6 +51,8 @@ syntax on
 syntax enable
 filetype plugin indent on
 set background=light
+set mouse+=niv
+set conceallevel=2
 set pumheight=15
 set number relativenumber
 set updatetime=100
@@ -58,6 +66,9 @@ set hlsearch smartcase ignorecase
 hi Comment ctermfg=67
 hi QuickFixLine cterm=None
 hi Search ctermbg=242
+hi TabLineSel ctermbg=white ctermfg=black
+hi clear TabLine
+hi clear TabLineFill
 hi SpellBad ctermbg=124
 hi Folded ctermbg=None
 hi FoldColumn ctermbg=None
@@ -68,6 +79,13 @@ hi DiffAdd ctermfg=0
 hi DiffChange ctermfg=0
 hi Pmenu ctermfg=7 ctermbg=239
 hi link sassClass Special
+" vim_indent_guides
+hi IndentGuidesEven ctermbg=17
+" Git Gutter
+hi GitGutterAdd ctermbg=None ctermfg=green
+hi GitGutterChange ctermbg=None ctermfg=yellow
+hi GitGutterDelete ctermbg=None ctermfg=red
+hi GitGutterChangeDelete ctermbg=None ctermfg=red
 " Set Tab to 2 spaces
 set tabstop=2 shiftwidth=2 expandtab
 " Split
@@ -99,31 +117,23 @@ let g:netrw_list_hide = netrw_gitignore#Hide()
 let g:netrw_list_hide .= ',\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_hide = 0
 " ale
-let g:ale_linters = { 'python': ['flake8'],
-                    \ 'c': ['gcc'],
-                    \ 'cpp': ['gcc'],
-                    \ 'javascript': ['eslint'],
-                    \ 'typescript': ['eslint'],
-                    \ 'vue': ['eslint'] }
-let g:ale_linters_explicit = 1
+let g:ale_sign_error = '🤬'
+let g:ale_sign_warning = '🤔'
+hi clear ALEErrorSign
+hi clear ALEWarningSign
 " vim-closetag
 let g:closetag_filenames = '*.xml,*.html,*.cshtml,*.js,*.jsx,*.vue'
 " fzf.vim
 set rtp+=~/.config/.fzf
 let g:fzf_buffers_jump = 1
-" Git Gutter
-hi GitGutterAdd ctermbg=None
-hi GitGutterChange ctermbg=None
-hi GitGutterDelete ctermbg=None
-hi GitGutterChangeDelete ctermbg=None
 " Goyo
 let g:goyo_width = 120
 " Rainbow
 let g:rainbow_active = 1
 let g:rainbow_conf = { 'separately': { 'html': 0,'vue': 0 } }
-" emmet
-let g:user_emmet_install_global = 0
-au FileType xml,html,css,javascript,javascriptreact,vue,sass EmmetInstall
+" vim_indent_guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
 
 
 " Key mapping
@@ -160,10 +170,10 @@ nnoremap <silent> <Down> :resize +3<CR>
 nnoremap <silent> <Up> :resize -3<CR>
 nnoremap <silent> <Right> :vertical resize +3<CR>
 " System Clip
-nnoremap <leader>sp "+P
-nnoremap <leader>sP "*P
-nnoremap <leader>syy "+yy :let @*=@+<CR>
-vnoremap <leader>sy "+y :let @*=@+<CR>
+nnoremap <leader>p "+P
+nnoremap <leader>P "*P
+nnoremap <silent> <leader>yy "+yy :let @*=@+<CR>
+vnoremap <silent> <leader>y "+y :let @*=@+<CR>
 " Fugitive
 nnoremap <silent> <leader>g :Gstatus<CR>
 " Toggle
@@ -176,6 +186,10 @@ vnoremap <Left> <nop>
 vnoremap <Down> <nop>
 vnoremap <Up> <nop>
 vnoremap <Right> <nop>
+" coc-pairs
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap {<Space> {<Space><Space>}<Left><Left>
+inoremap [<Space> [<Space><Space>]<Left><Left>
 
 
 " Abbreviate
@@ -198,12 +212,10 @@ au BufWritePost config.h !cd '%:p:h' && sudo make clean install && cd ~-
 "au BufWritePost *.tex !pdflatex -quiet -output-directory="%:p:h" "%:p" && notify-send -u low --icon="$HOME/.cache/icon/pdficon2.png" "%:r.pdf" "$(pdfcount '%:p:r.pdf') words"
 
 " Snippet
-au BufNewFile,BufRead *.xml,*.html,*.cshtml,*.js,*.jsx,*.vue inoremap <buffer> <expr> <cr> getline(".")[col(".")-2:col(".")-1]=="><" ? "<cr><esc>O" : "<cr>"
 au BufNewFile,BufRead *.css,*.sass,*.scss,*.html ru css.vim
 au BufNewFile,BufRead *.py ru python.vim
 au BufNewFile,BufRead memo-* ru memo.vim
 au BufNewFile,BufRead *.tex ru tex.vim
-au filetype netrw ru netrw.vim
 
 
 " Function

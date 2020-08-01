@@ -1,22 +1,22 @@
 swipe:
   3:
     left:
-      command: 'xdotool key alt+shift+Tab' # Previous active tag
+      command: 'xdotool key alt+h' # Previous active tag
     right:
-      command: 'xdotool key alt+Tab' # Next active tag
+      command: 'xdotool key alt+l' # Next active tag
     up:
       command: 'xdotool key super+f' # Toggle full screen
     down:
       command: 'xdotool key super+f' # Toggle full screen
   4:
     left:
-      command: 'xdotool key super+q' # Close window
+      command: 'xdotool key super+k' # Previous window
     right:
-      command: 'xdotool key super+shift+space' # Change layout
+      command: 'xdotool key super+j' # Next window
     up:
-      command: 'xdotool key super+Tab'
+      command: 'xdotool key super+q' # Close window
     down:
-      command: 'xdotool key super+1'
+      command: 'xdotool key super+1' # First tag
 
 pinch:
   2:
@@ -39,5 +39,5 @@ rotate:
 
 threshold:
   swipe: 0.3
-  pinch: 0.8
-  rotate: 0.2
+  pinch: 0.5
+  rotate: 0.3

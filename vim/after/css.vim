@@ -5,12 +5,16 @@ ia <buffer> wksb ::-webkit-scrollbar{}<Left><CR><Backspace>
 
 " attribute
 ia <buffer> wi width:
+ia <buffer> miw mix-width:
+ia <buffer> maw max-width:
 ia <buffer> he height:
+ia <buffer> mih mix-height:
+ia <buffer> mah max-height:
 ia <buffer> bg background:
 ia <buffer> op opacity:
 ia <buffer> co color:
 ia <buffer> fs font-size:
-ia <buffer> ff font-family:
+ia <buffer> fa font-family:
 ia <buffer> fw font-weight:
 ia <buffer> fl float:
 ia <buffer> ta text-align:
@@ -18,15 +22,16 @@ ia <buffer> va vertiacl-align:
 ia <buffer> td text-decoration:
 ia <buffer> tr transition:
 ia <buffer> tf transform:
-ia <buffer> tsx translateX()<Left>
-ia <buffer> tsy translateY()<Left>
-ia <buffer> ro rotate()<Left>
-ia <buffer> rox rotateX()<Left>
-ia <buffer> roy rotatey()<Left>
+  ia <buffer> tsx translateX()<Left>
+  ia <buffer> tsy translateY()<Left>
+  ia <buffer> ro rotate()<Left>
+  ia <buffer> rox rotateX()<Left>
+  ia <buffer> roy rotatey()<Left>
 ia <buffer> ov overflow:
 ia <buffer> ovx overflow-x:
 ia <buffer> ovy overflow-y:
 ia <buffer> ls list-style:
+ia <buffer> lst list-style-type:
 ia <buffer> cu cursor:
 ia <buffer> di display:
 ia <buffer> po position:
@@ -56,8 +61,11 @@ ia <buffer> btrr border-top-right-radius:
 ia <buffer> btlr border-top-left-radius:
 ia <buffer> bbrr border-bottom-right-radius:
 ia <buffer> bblr border-bottom-left-radius:
+ia <buffer> bs box-shadow:
 
 ia <buffer> ff flex-flow:
+ia <buffer> fd flex-direction:
+ia <buffer> fg flex-grow:
 ia <buffer> as align-self:
 ia <buffer> ac align-content:
 ia <buffer> js justufy-self:

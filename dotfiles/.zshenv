@@ -6,8 +6,8 @@ export XDG_CACHE_HOME=$HOME/.cache
 export BLFM=$HOME/.config/BLFM
 
 export BROWSER=brave
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 export NNN_COLORS='6123'
 export NNN_BMS='m:/mnt;c:~/.config;d:~/Downloads;w:~/Workdesk;v:~/Videos;V:/mnt/Videos'

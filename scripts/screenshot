@@ -9,14 +9,14 @@
 screenshot="/tmp/screenshot.png"
 
 fullscreen() {
-  (scrot --silent --quality 100 --overwrite --pointer $screenshot &&
+  (scrot --silent --overwrite --pointer $screenshot &&
     xclip -f -selection clipboard -t image/png -i $screenshot &&
     notify-send --icon="$screenshot" "Screenshot" "In clipboard & /tmp") ||
   notify-send "Screenshot Fail"
 }
 
 selection() {
-  (scrot --silent --quality 100 --overwrite --pointer  --freeze --select $screenshot &&
+  (scrot --silent --overwrite --pointer  --freeze --select $screenshot &&
     xclip -f -selection clipboard -t image/png -i $screenshot &&
     notify-send --icon="$screenshot" "Screenshot" "In clipboard & /tmp") ||
   notify-send "Screenshot Fail"

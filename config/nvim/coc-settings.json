@@ -1,8 +1,6 @@
 {
-  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.enable": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "json"
-  ],
-  "python.linting.pylintEnabled": false,
-  "python.linting.flake8Enabled": true
+  ]
 }
