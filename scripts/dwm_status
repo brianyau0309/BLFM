@@ -56,8 +56,7 @@ printInternet() {
 
 printBluetooth() {
   btpower=$(bluetoothctl show | grep Powered: | cut -d' ' -f2)
-  [ $btpower = "yes" ] &&
-  echo 
+  [ $btpower = "yes" ] && echo 
 }
 
 statusBar() {

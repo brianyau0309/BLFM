@@ -1,0 +1,31 @@
+#!/bin/sh
+
+vpn_list="$HOME/.config/vpn_list"
+[ -f $vpn_list ] || exit 1
+
+connectVPN() {
+  vpn=$(cat $vpn_list | dmenu -l 10 -p 'Connect')
+  [ -z "$vpn" ] && exit
+  notify-send 'dmenuvpn' 'connecting...' &&
+    eval $vpn >/dev/null 2>/dev/null &&
+    notify-send 'dmenuvpn' 'VPN connected' ||
+    notify-send 'dmenuvpn' 'Fail to connect VPN'
+}
+
+disconnectVPN() {
+  pid_list=$(pgrep openconnect --list-full)
+  [ -z "$pid_list" ] && exit
+  pid=$(echo "$pid_list" | dmenu -l 10 -p 'Disconnect' | cut -d' ' -f1)
+  [ -z "$pid" ] ||
+    (sudo kill -SIGINT $pid &&
+      notify-send 'dmenuvpn' 'VPN disconnect' ||
+      notify-send 'dmenuvpn' 'Fail to disconnect')
+}
+
+opts=$(echo "Connect\nDisconnect" | dmenu -l 2 -p 'dmenuvpn')
+
+case "$opts" in
+  Connect) connectVPN ;;
+  Disconnect) disconnectVPN ;;
+  *) echo 'Invalid argument' ;;
+esac

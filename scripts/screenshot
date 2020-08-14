@@ -16,13 +16,10 @@ fullscreen() {
 }
 
 selection() {
-  (scrot --silent --overwrite --pointer  --freeze --select $screenshot &&
-    xclip -f -selection clipboard -t image/png -i $screenshot &&
-    notify-send --icon="$screenshot" "Screenshot" "In clipboard & /tmp") ||
-  notify-send "Screenshot Fail"
+  flameshot gui --path /tmp
 }
 
 case "$1" in
   full) fullscreen ;;
-  select) sleep 0.2 && selection ;;
+  select) selection ;;
 esac

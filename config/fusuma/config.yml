@@ -1,9 +1,9 @@
 swipe:
   3:
     left:
-      command: 'xdotool key alt+h' # Previous active tag
+      command: 'xdotool key alt+shift+Tab' # Next active tag
     right:
-      command: 'xdotool key alt+l' # Next active tag
+      command: 'xdotool key alt+Tab' # Previous active tag
     up:
       command: 'xdotool key super+f' # Toggle full screen
     down:
@@ -15,6 +15,8 @@ swipe:
       command: 'xdotool key super+j' # Next window
     up:
       command: 'xdotool key super+q' # Close window
+      threshold: 0.5
+      interval: 1
     down:
       command: 'xdotool key super+1' # First tag
 
@@ -38,6 +40,6 @@ rotate:
       command: 'xdotool key XF86MonBrightnessDown' # Decrease Brightness
 
 threshold:
-  swipe: 0.3
+  swipe: 0.2
   pinch: 0.5
   rotate: 0.3

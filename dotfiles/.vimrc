@@ -97,9 +97,7 @@ let g:netrw_hide = 0
 " ale
 let g:ale_linters = { 'python': ['flake8'],
                     \ 'c': ['gcc'],
-                    \ 'javascript': ['eslint'],
-                    \ 'typescript': ['eslint', 'standard'],
-                    \ 'vue': ['eslint'] }
+                    \ 'javascript': ['eslint'] }
 let g:ale_linters_explicit = 1
 " vim-closetag
 let g:closetag_filenames = '*.xml,*.html,*.cshtml,*.js,*.jsx,*.vue'

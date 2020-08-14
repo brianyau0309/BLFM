@@ -1,0 +1,45 @@
+#!/bin/sh
+
+volumePath="$HOME/.config/xob/xob-volume"
+brightnessPath="$HOME/.config/xob/xob-brightness"
+
+setVolume() {
+  [ -p "$volumePath" ] || exit
+  tail -f $volumePath | xob -s volume -t 1500
+}
+
+showVolume() {
+  [ -p "$volumePath" ] || exit
+  volume=$(pulsemixer --get-volume | cut -d' ' -f1)
+  [ $(pulsemixer --get-mute) -eq 1 ] && mute='!'
+  echo "$volume$mute" > $volumePath
+}
+
+setBrightness() {
+  [ -p "$brightnessPath" ] || exit
+  tail -f $brightnessPath | xob -s brightness -t 1500
+}
+
+showBrightness() {
+  [ -p "$brightnessPath" ] || exit
+  brightness=$(xbacklight -get)
+  echo "$brightness" > $brightnessPath
+}
+
+case "$1" in
+  set)
+    case "$2" in
+      volume) setVolume ;;
+      brightness) setBrightness ;;
+      *) echo "Invalid argument" ;;
+    esac
+  ;;
+  show)
+    case "$2" in
+      volume) showVolume ;;
+      brightness) showBrightness ;;
+      *) echo "Invalid argument" ;;
+    esac
+  ;;
+  *) echo "Invalid argument" ;;
+esac

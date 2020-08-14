@@ -1,5 +1,6 @@
 {
   "diagnostic.enable": false,
+  "suggest.noselect": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "json"
   ]

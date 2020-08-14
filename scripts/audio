@@ -2,16 +2,6 @@
 # Audio Control
 steps="${2:-5}"
 
-# alsa
-# "alsa-utils" is required
-#case "$1" in
-  #toggle) amixer sset Master toggle ;;
-  #up) amixer sset Master "$steps"%+ ;;
-  #down) amixer sset Master "$steps"%- ;;
-  #*) exit;
-#esac >/dev/null
-
-# pulseaudio
 # "pulsemixer" is required
 case "$1" in
   toggle) pulsemixer --toggle-mute ;;
@@ -20,4 +10,5 @@ case "$1" in
   *) exit 1 ;;
 esac 2>/dev/null
 refstatus 2>/dev/null
-sysnotify 2>/dev/null
+# sysnotify 2>/dev/null
+# xobcontrol show volume

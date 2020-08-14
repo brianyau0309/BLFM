@@ -15,6 +15,7 @@ let mapleader=" "
 let &t_SI="\<esc>[2 q"
 let &t_SR="\<esc>[4 q"
 let &t_EI="\<esc>[2 q"
+let g:sneak#label = 1
 
 
 " vim-plug
@@ -37,12 +38,14 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'mcchrish/nnn.vim'
 Plug 'voldikss/vim-floaterm'
+Plug 'justinmk/vim-sneak'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " coc-pairs
 " coc-tsserver
 " coc-python
 " coc-json
 " coc-css
+" coc-prettier
 call plug#end()
 
 
@@ -55,7 +58,7 @@ set mouse+=niv
 set conceallevel=2
 set pumheight=15
 set number relativenumber
-set updatetime=100
+set updatetime=200
 set viminfo+=n~/.vim/nviminfo
 " Indent & Linebreak
 set smartindent linebreak
@@ -75,8 +78,10 @@ hi FoldColumn ctermbg=None
 hi SignColumn ctermbg=None
 hi ExtraWhitespace ctermbg=red
 hi VertSplit cterm=None ctermbg=236
-hi DiffAdd ctermfg=0
-hi DiffChange ctermfg=0
+hi DiffAdd ctermfg=0 ctermbg=green
+hi DiffChange ctermfg=0 ctermbg=yellow
+hi DiffDelete ctermfg=0 ctermbg=red
+hi DiffText ctermfg=0 ctermbg=blue
 hi Pmenu ctermfg=7 ctermbg=239
 hi link sassClass Special
 " vim_indent_guides
@@ -117,6 +122,10 @@ let g:netrw_list_hide = netrw_gitignore#Hide()
 let g:netrw_list_hide .= ',\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_hide = 0
 " ale
+let g:ale_linters = { 'python': ['flake8'],
+                    \ 'c': ['gcc'],
+                    \ 'javascript': ['eslint'] }
+let g:ale_linters_explicit = 1
 let g:ale_sign_error = '🤬'
 let g:ale_sign_warning = '🤔'
 hi clear ALEErrorSign
@@ -134,6 +143,11 @@ let g:rainbow_conf = { 'separately': { 'html': 0,'vue': 0 } }
 " vim_indent_guides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
+" nerdcommenter
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+" hexokinase
+let g:Hexokinase_highlighters = ['virtual']
 
 
 " Key mapping
@@ -194,6 +208,8 @@ inoremap [<Space> [<Space><Space>]<Left><Left>
 
 " Abbreviate
 ca help tab help
+ca wq x
+ca wqa xa
 
 
 " Auto Command
@@ -216,6 +232,7 @@ au BufNewFile,BufRead *.css,*.sass,*.scss,*.html ru css.vim
 au BufNewFile,BufRead *.py ru python.vim
 au BufNewFile,BufRead memo-* ru memo.vim
 au BufNewFile,BufRead *.tex ru tex.vim
+au Filetype netrw ru netrw.vim
 
 
 " Function

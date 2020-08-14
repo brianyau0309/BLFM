@@ -58,4 +58,4 @@ bindkey '^k' autosuggest-accept
 [ -z $(wkon anchor) ] || cd $(wkon anchor)
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh"  ] && \. "$NVM_DIR/nvm.sh" --no-use
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use

@@ -2,7 +2,7 @@
 # !! Use --app=url option to instead
 # Generate shorcut for chrome apps
 
-appsDir="$HOME/.local/chromium_apps"
+appsDir="$HOME/.local/chrome_apps"
 link=$(xclip -o)
 appname=$(echo | dmenu -p "App Name for $link:")
 [ "$appname" = "" ] && exit
@@ -10,7 +10,7 @@ echo "brave --app=\"$link\"" > "$appsDir/$appname"
 chmod +x $appsDir/*
 
 #appsList="$HOME/.local/share/applications"
-#appsDir="$HOME/.local/chromium_apps"
+#appsDir="$HOME/.local/chrome_apps"
 #[ -d $appsList  ] || echo "Error: Please at least install one chrome app." || exit
 #(echo $PATH | grep $appsDir >/dev/null) || echo "Error: Please add \"$appsDir\" to envirment PATH." || exit
 
