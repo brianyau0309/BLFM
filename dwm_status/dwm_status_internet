@@ -1,0 +1,6 @@
+#!/bin/sh
+
+ethernet=$(cat /sys/class/net/eno1/operstate)
+wifi=$(cat /sys/class/net/wlp1s0//operstate)
+[ "$ethernet" = "up" ] && echo   ||
+  ([ "$wifi" = "up" ] && echo   || echo 睊)

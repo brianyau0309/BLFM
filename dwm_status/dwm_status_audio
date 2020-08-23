@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# pulseaudio
+volumenum=$(pulsemixer --get-volume | cut -d' ' -f1)
+[ $(pulsemixer --get-mute) -eq 1 ] &&
+  echo 🔇 ||
+  ( ([ $volumenum -gt 66 ] && echo 🔊) ||
+    ([ $volumenum -gt 33 ] && echo 🔉) ||
+    echo 🔈 )

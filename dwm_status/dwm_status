@@ -1,0 +1,6 @@
+#!/bin/sh
+
+dwm_status_init
+while :; do
+  dwm_status_loop
+done

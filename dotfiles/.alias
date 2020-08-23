@@ -5,6 +5,7 @@ alias ll="ls -l --git"
 alias lla="ls -la --git"
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
+alias h='history'
 alias sctl='sudo systemctl'
 alias sdn="sudo shutdown -h now"
 alias pt="sudo powertop"

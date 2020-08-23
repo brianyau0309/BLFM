@@ -124,7 +124,9 @@ let g:netrw_hide = 0
 " ale
 let g:ale_linters = { 'python': ['flake8'],
                     \ 'c': ['gcc'],
-                    \ 'javascript': ['eslint'] }
+                    \ 'javascript': ['eslint'],
+                    \ 'rust': ['rustc', 'cargo'],
+                    \ 'go': ['gopls'] }
 let g:ale_linters_explicit = 1
 let g:ale_sign_error = '🤬'
 let g:ale_sign_warning = '🤔'
@@ -146,6 +148,7 @@ let g:indent_guides_auto_colors = 0
 " nerdcommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
 " hexokinase
 let g:Hexokinase_highlighters = ['virtual']
 

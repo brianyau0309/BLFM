@@ -1,0 +1,5 @@
+#!/bin/sh
+
+pgrep mocp >/dev/null || exit
+song=$(mocp -M $HOME/.config/moc -Q "%state %song")
+[ -z "$song" ] || echo $song | sed -E -e 's/PLAY//; s/PAUSE|STOP//'

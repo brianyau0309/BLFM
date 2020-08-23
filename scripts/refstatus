@@ -1,3 +1,4 @@
 #!/bin/sh
 # Kill the status bar sleep in while loop to refresh
-kill $(pstree -lp | grep -- dwm_status\([0-9] | awk -F"sleep" '{gsub(/[()]/,""); print $2;}')
+# kill $(pstree -lp | grep -- dwm_status\([0-9] | awk -F"sleep" '{gsub(/[()]/,""); print $2;}')
+pkill dwm_status_loop
