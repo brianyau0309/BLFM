@@ -53,6 +53,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 bindkey '^k' autosuggest-accept
 [ -f ~/.config/.fzf.zsh ] && source ~/.config/.fzf.zsh
+source /usr/share/doc/find-the-command/ftc.zsh quiet noprompt
 
 # Personal
 [ -z $(wkon anchor) ] || cd $(wkon anchor)

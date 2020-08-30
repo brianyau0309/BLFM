@@ -5,16 +5,16 @@ import "../block"
 // Get is to get config
 func Get() block.List {
 	blocks := []block.Block{
-    //        exec              interval
-		block.New("dwm_status_moc",       3),
-		block.New("dwm_status_wkon",      0),
-		block.New("dwm_status_storage",  15),
-		block.New("dwm_status_battery",  30),
-		block.New("dwm_status_date",      3),
-		block.New("dwm_status_audio",     0),
-		block.New("dwm_status_bluetooth", 0),
-		block.New("dwm_status_notify",    0),
-		block.New("dwm_status_internet",  6),
+    //        code    exec              interval
+		block.New("\x01", "status.moc",       0),
+		block.New("\x02", "status.wkon",      0),
+		block.New("\x03", "status.storage",  30),
+		block.New("\x04", "status.battery",  30),
+		block.New("\x05", "status.date",      5),
+		block.New("\x06", "status.audio",     0),
+		block.New("\x07", "status.bluetooth", 0),
+		block.New("\x08", "status.notify",    0),
+		block.New("\x09", "status.internet", 10),
 	}
 	return block.NewList(blocks)
 }

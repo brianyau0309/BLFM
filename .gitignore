@@ -1,2 +1,4 @@
 scripts/testscript
+config/moc/playlist*
 config/mpv/watch_later
+config/nvim/.netrwhist

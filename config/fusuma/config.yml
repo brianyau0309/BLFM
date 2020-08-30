@@ -14,11 +14,11 @@ swipe:
     right:
       command: 'xdotool key super+j' # Next window
     up:
+      command: 'xdotool key super+shift+q' # Power menu
+    down:
       command: 'xdotool key super+q' # Close window
       threshold: 0.5
       interval: 1
-    down:
-      command: 'xdotool key super+1' # First tag
 
 pinch:
   2:

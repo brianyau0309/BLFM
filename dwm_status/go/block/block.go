@@ -13,14 +13,15 @@ import (
 
 // Block is a status block
 type Block struct {
+  Code     string
 	Exec     string
 	Interval uint8
 	State    string
 }
 
 // New is to create a new Block
-func New(exec string, interval uint8) Block {
-	return Block{exec, interval, ""}
+func New(code string, exec string, interval uint8) Block {
+	return Block{code, exec, interval, ""}
 }
 
 // RefreshState is to refreash state of a Block
@@ -44,10 +45,10 @@ type List struct {
 
 // NewList is to create a new List
 func NewList(blocks []Block) List {
-	var max, min uint8 = 1, 1
+	var max, min uint8 = blocks[0].Interval, blocks[0].Interval
 	for _, block := range blocks {
 		if block.Interval != 0 {
-			if block.Interval < min {
+			if min == 0 || block.Interval < min {
 				min = block.Interval
 			}
 			if block.Interval > max {
@@ -55,6 +56,7 @@ func NewList(blocks []Block) List {
 			}
 		}
 	}
+  if min == 0 { min = 1 }
 	return List{blocks, max, min}
 }
 
@@ -79,6 +81,7 @@ func (blockList *List) RefreshAllState(counter uint8) {
 func (blockList *List) GetAllState() string {
 	var str strings.Builder
 	for _, block := range blockList.List {
+		str.WriteString(block.Code)
 		str.WriteString(block.State)
 	}
 
