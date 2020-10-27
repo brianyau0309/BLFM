@@ -10,7 +10,7 @@ fcitx >/dev/null 2>/dev/null &
 fusuma >/dev/null 2>/dev/null &
 clipmenud &
 flameshot &
-sudo xbacklight -set 20
+# sudo xbacklight -set 20
 setbg random nonotify
 xobctl set volume >/dev/null &
 xobctl set brightness >/dev/null &

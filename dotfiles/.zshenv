@@ -10,7 +10,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export NNN_COLORS='6123'
-export NNN_BMS='m:/mnt;t:/tmp;c:~/.config;d:~/Downloads;w:~/Workdesk;v:/mnt/Videos;M:~/Music;'
+export NNN_BMS='m:/mnt;t:/tmp;c:~/.config;d:~/Downloads;w:~/Workdesk;v:/mnt/Videos;M:~/Music;r:/mnt/rpi4;'
 export NNN_PLUG='d:-dragon'
 
 export LESSHISTFILE=/dev/null

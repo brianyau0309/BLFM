@@ -5,7 +5,7 @@ import "../block"
 // Get is to get config
 func Get() block.List {
 	blocks := []block.Block{
-    //        code    exec              interval
+    //        code    exec          interval
 		block.New("\x01", "status.moc",       0),
 		block.New("\x02", "status.wkon",      0),
 		block.New("\x03", "status.storage",  30),

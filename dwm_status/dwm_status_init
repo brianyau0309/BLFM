@@ -1,4 +1,1 @@
 #!/bin/sh
-
-# Reset while enter xorg
-[ -f /tmp/.dunsttoggle ] && rm /tmp/.dunsttoggle

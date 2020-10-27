@@ -8,7 +8,7 @@ ssh_list="$HOME/.ssh/ssh_list"
 list=$(grep "NAME:" $ssh_list | cut -d':' -f2)
 [ -z "$list" ] && exit
 
-selected=$(echo "Open config\n$list" | dmenu -i -l 10 -p "sshfs")
+selected=$(echo "Open config\n$list" | dmenu -i -l 10 -p "SSH")
 [ -z "$selected" ] && exit
 [ "$selected" = "Open config" ] && st -e vim $ssh_list && exit
 

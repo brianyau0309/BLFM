@@ -35,10 +35,12 @@ Plug 'mattn/emmet-vim'
 Plug 'luochen1990/rainbow'
 Plug 'dense-analysis/ale'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mcchrish/nnn.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-sneak'
+Plug 'mbbill/undotree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " coc-pairs
 " coc-tsserver
@@ -135,7 +137,6 @@ hi clear ALEWarningSign
 " vim-closetag
 let g:closetag_filenames = '*.xml,*.html,*.cshtml,*.js,*.jsx,*.vue'
 " fzf.vim
-set rtp+=~/.config/.fzf
 let g:fzf_buffers_jump = 1
 " Goyo
 let g:goyo_width = 120
@@ -198,6 +199,7 @@ noremap <silent> <C-z> :silent! ZoomToggle<CR>
 nnoremap <silent> <leader>d :Lex<CR>
 nnoremap <silent> <leader>l :LocalListToggle<CR>
 nnoremap <silent> <leader>m :Goyo<CR>
+nnoremap <silent> <leader>u :UndotreeToggle<CR>
 " Ban Arrow
 vnoremap <Left> <nop>
 vnoremap <Down> <nop>
@@ -207,6 +209,9 @@ vnoremap <Right> <nop>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap {<Space> {<Space><Space>}<Left><Left>
 inoremap [<Space> [<Space><Space>]<Left><Left>
+" ALE
+nnoremap <silent>]e :ALENext<CR>
+nnoremap <silent>[e :ALEPrevious<CR>
 
 
 " Abbreviate
@@ -285,3 +290,37 @@ function! B2GSC()
     call B2G()
   endif
 endfunction
+
+function! CleanQQ()
+  :w
+  :norm ggV"mp
+  :norm G"np
+  :%s/"total_discount"/total_discount/gI
+  :%s/"total_price_amount"/total_price_amount/gI
+  :%s/"shipping_method"/shipping_method/gI
+  :%s/"payment_method"/payment_method/gI
+  :%s/"shipping_fee"/shipping_fee/gI
+  :%s/"billing_address"/billing_address/gI
+  :%s/"shipping_address"/shipping_address/gI
+  :%s/"discount_code"/discount_code/gI
+  :%s/"products"/products/gI
+  :%s/"separators"/separators/gI
+  :%s/"from"/from/gI
+  :%s/"next"/next/gI
+  :%s/"to"/to/gI
+  :%s/"splitBy"/splitBy/gI
+  :%s/"cols"/cols/gI
+  :%s/"title"/title/gI
+  :%s/"index"/index/gI
+  :%s/"include"/include/gI
+  :%s/"1"/1/g
+  :%s/"2"/2/g
+  :%s/"3"/3/g
+  :%s/"4"/4/g
+  :%s/"5"/5/g
+  :%s/"6"/6/g
+  :%s/"7"/7/g
+  :%s/"8"/8/g
+endfunction
+
+noremap <silent> <F5> :call CleanQQ()<CR>

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+case $BUTTON in
+	1) notify-send -u critical "$(cal)" "Click to Close" ;;
+	3) st -e nvim $BLFM/dwm_status/status.date ;;
+esac

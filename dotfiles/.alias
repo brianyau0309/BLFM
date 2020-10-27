@@ -3,12 +3,15 @@ alias ls='exa -g --color=auto --group-directories-first'
 alias la="ls -a"
 alias ll="ls -l --git"
 alias lla="ls -la --git"
+alias tree="ls -T"
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias h='history'
 alias sctl='sudo systemctl'
 alias sdn="sudo shutdown -h now"
 alias pt="sudo powertop"
+alias ...="../.."
+alias ....="../../.."
 # pacman
 alias p="sudo pacman"
 # vim/neovim
@@ -39,9 +42,12 @@ alias dwc="v ~/.config/dwm/config.h"
 alias stc="v ~/.config/st/config.h"
 alias dmc="v ~/.config/dmenu/config.h"
 # youtube-dl
-alias ytd.m4a="youtube-dl -f 'bestaudio[ext=m4a]'"
+alias ytd.m4a="youtube-dl -f bestaudio[ext=m4a] --extract-audio --embed-thumbnail --add-metadata"
+alias ytd.ba="youtube-dl -f bestaudio --extract-audio --embed-thumbnail --add-metadata"
 # mpv
 alias mpv.webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
+#dragon
+alias dra="dragon-drag-and-drop"
 # wkon
 alias gh="cd && wkon home"
 alias gw='wkon last && cd "$(wkon last)" && la && wkon'
