@@ -14,7 +14,7 @@ swipe:
     right:
       command: 'xdotool key super+j' # Next window
     up:
-      command: 'xdotool key super+shift+q' # Power menu
+      command: 'xdotool key super+space' # Toggle floating
     down:
       command: 'xdotool key super+q' # Close window
       threshold: 0.5
@@ -43,3 +43,13 @@ threshold:
   swipe: 0.2
   pinch: 0.5
   rotate: 0.3
+
+hold:
+  1:
+    command: 'xdotool keydown super; xdotool mousedown 1; xdotool keyup super'
+
+plugin:
+  inputs:
+    libinput_command_input:
+      enable-tap: true
+      verbose: true

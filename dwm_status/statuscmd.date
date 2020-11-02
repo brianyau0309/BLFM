@@ -3,4 +3,5 @@
 case $BUTTON in
 	1) notify-send -u critical "$(cal)" "Click to Close" ;;
 	3) st -e nvim $BLFM/dwm_status/status.date ;;
+	2) notify-send -u critical "$(cal --months 12)" "Click to Close" ;;
 esac

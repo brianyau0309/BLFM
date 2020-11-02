@@ -1,0 +1,19 @@
+function cleanQQ()
+  :%s/"total_discount"/total_discount/gI
+  :%s/"total_price_amount"/total_price_amount/gI
+  :%s/"shipping_method"/shipping_method/gI
+  :%s/"payment_method"/payment_method/gI
+  :%s/"shipping_fee"/shipping_fee/gI
+  :%s/"billing_address"/billing_address/gI
+  :%s/"shipping_address"/shipping_address/gI
+  :%s/"discount_code"/discount_code/gI
+  :%s/"products"/products/gI
+  :%s/"from"/from/gI
+  :%s/"next"/next/gI
+  :%s/"to"/to/gI
+  :%s/"splitBy"/splitBy/gI
+  :%s/"cols"/cols/gI
+  :%s/"title"/title/gI
+  :%s/"index"/index/gI
+  :%s/"include"/include/gI
+endfunction
