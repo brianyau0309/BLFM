@@ -14,7 +14,7 @@ autoload -U colors && colors
 if [ "$(whoami)" = 'root' ]; then
   PS1='%B%F{yello}[%1~]%b%f 😎 '
 else
-  PS1='%B%F{yello}[%1~]%b%f %(?.😆.😭) '
+  PS1='%B%F{yello}[%1~]%b%f %(?.😄.😫) '
 fi
 RPROMPT='%B%F{green}$(gitbranch)%b%f'
 
@@ -56,7 +56,10 @@ bindkey '^k' autosuggest-accept
 source /usr/share/doc/find-the-command/ftc.zsh quiet noprompt
 
 # Personal
-[ -z $(wkon anchor) ] || cd $(wkon anchor)
+if [ "$(whoami)" = 'root' ]; then
+else
+  [ -z $(wkon anchor) ] || cd $(wkon anchor)
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use

@@ -44,10 +44,6 @@ threshold:
   pinch: 0.5
   rotate: 0.3
 
-hold:
-  1:
-    command: 'xdotool keydown super; xdotool mousedown 1; xdotool keyup super'
-
 plugin:
   inputs:
     libinput_command_input:

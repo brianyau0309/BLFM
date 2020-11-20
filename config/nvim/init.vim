@@ -240,6 +240,7 @@ au BufNewFile,BufRead *.css,*.sass,*.scss,*.html ru css.vim
 au BufNewFile,BufRead *.py ru python.vim
 au BufNewFile,BufRead memo-* ru memo.vim
 au BufNewFile,BufRead *.tex ru tex.vim
+au BufNewFile,BufRead *.md ru markdown.vim
 au Filetype netrw ru netrw.vim
 
 
@@ -290,37 +291,3 @@ function! B2GSC()
     call B2G()
   endif
 endfunction
-
-function! CleanQQ()
-  :w
-  :norm ggV"mp
-  :norm G"np
-  :%s/"total_discount"/total_discount/gI
-  :%s/"total_price_amount"/total_price_amount/gI
-  :%s/"shipping_method"/shipping_method/gI
-  :%s/"payment_method"/payment_method/gI
-  :%s/"shipping_fee"/shipping_fee/gI
-  :%s/"billing_address"/billing_address/gI
-  :%s/"shipping_address"/shipping_address/gI
-  :%s/"discount_code"/discount_code/gI
-  :%s/"products"/products/gI
-  :%s/"separators"/separators/gI
-  :%s/"from"/from/gI
-  :%s/"next"/next/gI
-  :%s/"to"/to/gI
-  :%s/"splitBy"/splitBy/gI
-  :%s/"cols"/cols/gI
-  :%s/"title"/title/gI
-  :%s/"index"/index/gI
-  :%s/"include"/include/gI
-  :%s/"1"/1/g
-  :%s/"2"/2/g
-  :%s/"3"/3/g
-  :%s/"4"/4/g
-  :%s/"5"/5/g
-  :%s/"6"/6/g
-  :%s/"7"/7/g
-  :%s/"8"/8/g
-endfunction
-
-noremap <silent> <F5> :call CleanQQ()<CR>

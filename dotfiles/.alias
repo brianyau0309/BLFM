@@ -12,6 +12,9 @@ alias sdn="sudo shutdown -h now"
 alias pt="sudo powertop"
 alias ...="../.."
 alias ....="../../.."
+alias cp="cpg -gv"
+alias mv="mvg -gv"
+alias rm="rm -v"
 # pacman
 alias p="sudo pacman"
 # vim/neovim

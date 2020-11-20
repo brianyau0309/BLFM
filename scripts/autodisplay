@@ -1,0 +1,9 @@
+#!/bin/sh
+
+position="${1:-right-of}"
+
+(xrandr | grep -v " connected primary" | grep " connected") > /dev/null || exit
+resolution=$(xrandr | sed -ne '/^HDMI-A-0/ { :a; n; p; ba;  }' | head -1)
+r=$(echo $resolution | cut -d' ' -f1)
+
+xrandr --output HDMI-A-0 --$position eDP --mode "$r" --auto

@@ -38,7 +38,7 @@ then
 
 elif [ "$option" = "Turn On Wire Connection" ];
 then
-  sudo ifconfig eno1 up && sleep 3
+  sudo ifconfig eno1 up && sleep 5
 
 elif [ "$option" = "VPN" ];
 then

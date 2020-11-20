@@ -1,8 +1,8 @@
 #!/bin/sh
 
 bat=$(cat /sys/class/power_supply/BAT0/capacity)
-bat_status=$(cat /sys/class/power_supply/BAT0/status)
-[ "$bat_status" = "Charging" ] && echo  ||
+ac_status=$(cat /sys/class/power_supply/AC0/online)
+[ "$ac_status" = "1" ] && echo  ||
   ( ([ $bat -gt 90 ] && echo ) ||
     ([ $bat -gt 80 ] && echo ) ||
     ([ $bat -gt 70 ] && echo ) ||

@@ -22,7 +22,7 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;94m'
 
-export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow -E '.cache' -E '.local' -E '.git' -E 'pvm' -E 'chromium' -E 'plugged' -E '.fzf' -E '.minecraft' -E 'obs-studio' -E 'libreoffice' -E 'GIMP' -E 'discord' -E 'go' -E 'BraveSoftware' -E '.nvm' -E 'VirtualBox' -E '.steam' -E '.nuget' -E '.aspnet' -E '.dotnet' -E '.vscode-oss' -E 'Code - OSS' -E '.npm' -E '.thunderbird' -E '.templateengine' -E 'coc' -E '.mozilla' -E 'Electron' -E 'fcitx' -E 'balena-etcher' -E 'watch_later' -E 'bin' -E 'obj' -E 'wwwroot'"
+export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow -E 'node_modules' -E '__pycache__' -E '.cache' -E '.local' -E '.git' -E 'pvm' -E 'chromium' -E 'plugged' -E '.fzf' -E '.minecraft' -E 'obs-studio' -E 'libreoffice' -E 'GIMP' -E 'discord' -E 'go' -E 'BraveSoftware' -E '.nvm' -E 'VirtualBox' -E '.steam' -E '.nuget' -E '.aspnet' -E '.dotnet' -E '.vscode-oss' -E 'Code - OSS' -E '.npm' -E '.thunderbird' -E '.templateengine' -E 'coc' -E '.mozilla' -E 'Electron' -E 'fcitx' -E 'balena-etcher' -E 'watch_later' -E 'bin' -E 'obj' -E 'wwwroot' -E 'advcpmv' -E 'Games' -E '.wine'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export NODE_REPL_HISTORY=""
