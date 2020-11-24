@@ -150,8 +150,6 @@ let g:indent_guides_auto_colors = 0
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDDefaultAlign = 'left'
-" hexokinase
-let g:Hexokinase_highlighters = ['virtual']
 
 
 " Key mapping
@@ -216,8 +214,10 @@ nnoremap <silent>[e :ALEPrevious<CR>
 
 " Abbreviate
 ca help tab help
+ca tn tabnew
 ca wq x
 ca wqa xa
+ca ft Filetypes
 
 
 " Auto Command

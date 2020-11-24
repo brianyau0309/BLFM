@@ -70,4 +70,3 @@ alias mt="memo last Tags"
 alias mtd="memo last $(date '+%d-%m-%Y')"
 alias mtr="memo last $(date -d tomorrow '+%d-%m-%Y')"
 alias mls="memo list"
-
