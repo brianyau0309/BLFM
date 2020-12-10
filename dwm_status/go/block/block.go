@@ -93,7 +93,7 @@ func (blockList *List) GetAllState() string {
 // OutputState is to output all state in Block List
 func (blockList *List) OutputState(counter uint8) {
 	blockList.RefreshAllState(counter)
-	exec.Command("/bin/xsetroot", "-name", blockList.GetAllState()).Start()
+	exec.Command("/bin/xsetroot", "-name", blockList.GetAllState()).Output()
 }
 
 // Loop Block List

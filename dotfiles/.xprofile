@@ -3,6 +3,7 @@
 # xrandr --addmode Virtual-1 "1920x1080_60.00"
 # resolution full norestore
 # autodisplay above
+blugon -S 5200 &
 dwm_status 2>/dev/null &
 picom -cf -D 3 -I 0.04 -b &
 dunst &

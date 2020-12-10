@@ -21,6 +21,8 @@ alias p="sudo pacman"
 alias v="nvim"
 alias vim="nvim"
 alias sv="sudo nvim"
+alias svi="sudo nvim"
+alias svim="sudo nvim"
 alias vrc="v ~/.config/nvim/init.vim"
 alias vst="cd ~/.vim/after && ls"
 # bash
@@ -49,7 +51,7 @@ alias ytd.m4a="youtube-dl -f bestaudio[ext=m4a] --extract-audio --embed-thumbnai
 alias ytd.ba="youtube-dl -f bestaudio --extract-audio --embed-thumbnail --add-metadata"
 # mpv
 alias mpv.webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
-#dragon
+# dragon
 alias dra="dragon-drag-and-drop"
 # wkon
 alias gh="cd && wkon home"
