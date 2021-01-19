@@ -1,6 +1,6 @@
 #!/bin/sh
 
 case $BUTTON in
-	1) exec st;;
+  1) WKON_PATH=$(wkon anchor) st;;
 	3) wkon home && refstatus;;
 esac

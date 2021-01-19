@@ -1,0 +1,4 @@
+! free up right-Alt for remapping
+remove mod1 = Alt_R
+
+add mod4 = Alt_R

@@ -7,9 +7,9 @@ connectVPN() {
   vpn=$(cat $vpn_list | dmenu -l 10 -p 'Connect')
   [ -z "$vpn" ] && exit
   notify-send 'dmenuvpn' 'connecting...' &&
-    eval $vpn >/dev/null 2>/dev/null &&
-    notify-send 'dmenuvpn' 'VPN connected' ||
+    eval $vpn >/dev/null 2>/dev/null ||
     notify-send 'dmenuvpn' 'Fail to connect VPN'
+    # notify-send 'dmenuvpn' 'VPN connected' ||
 }
 
 disconnectVPN() {

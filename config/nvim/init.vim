@@ -62,13 +62,15 @@ set pumheight=15
 set number relativenumber
 set updatetime=200
 set viminfo+=n~/.vim/nviminfo
+set fileencodings-=latin1
+set fileencodings+=big5,gbk,latin1
 " Indent & Linebreak
 set smartindent linebreak
 " Fold
 set foldmethod=manual
 " Highlight
 set hlsearch smartcase ignorecase
-hi Comment ctermfg=67
+hi Comment ctermfg=36
 hi QuickFixLine cterm=None
 hi Search ctermbg=242
 hi TabLineSel ctermbg=white ctermfg=black
@@ -109,11 +111,14 @@ match ExtraWhitespace / \+$/
 " airline
 let g:airline#extensions#wordcount#filetypes = ['help', 'markdown', 'rst', 'org', 'text', 'asciidoc', 'tex', 'mail', 'ms', 'nroff']
 " nnn
-let g:nnn#command = 'nnn -edH'
-let g:nnn#layout = { 'window': { 'width': 0.6, 'height': 0.6, 'highlight': 'SpecialKey', 'bordor': 'sharp' } }
-let g:nnn#action = { '<C-t>': 'tab split',
+let g:nnn#command = 'nnn -eH'
+let g:nnn#layout = { 'window': { 'width': 0.8, 'height': 0.8, 'highlight': 'SpecialKey', 'bordor': 'sharp' } }
+let g:nnn#action = { '<C-t>': 'tab drop',
                    \ '<C-x>': 'split',
                    \ '<C-v>': 'vsplit' }
+" floaterm
+let g:floaterm_height = 0.8
+let g:floaterm_width = 0.8
 " netrw
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
@@ -138,6 +143,10 @@ hi clear ALEWarningSign
 let g:closetag_filenames = '*.xml,*.html,*.cshtml,*.js,*.jsx,*.vue'
 " fzf.vim
 let g:fzf_buffers_jump = 1
+let g:fzf_action = { 'enter': 'drop',
+                   \ 'ctrl-t': 'tab drop',
+                   \ 'ctrl-x': 'split',
+                   \ 'ctrl-v': 'vsplit' }
 " Goyo
 let g:goyo_width = 120
 " Rainbow
@@ -160,6 +169,7 @@ noremap <silent> <F12> :call B2GSC()<CR>
 nnoremap <silent> K :silent! nohls<CR>
 nnoremap n nzz
 nnoremap <leader>] :!ctags -R<CR>
+nnoremap <leader>a mmggVG
 " Window move
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
@@ -193,7 +203,7 @@ vnoremap <silent> <leader>y "+y :let @*=@+<CR>
 " Fugitive
 nnoremap <silent> <leader>g :Gstatus<CR>
 " Toggle
-noremap <silent> <C-z> :silent! ZoomToggle<CR>
+nnoremap <silent> <leader>z :ZoomToggle<CR>
 nnoremap <silent> <leader>d :Lex<CR>
 nnoremap <silent> <leader>l :LocalListToggle<CR>
 nnoremap <silent> <leader>m :Goyo<CR>

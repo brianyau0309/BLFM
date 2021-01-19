@@ -17,6 +17,7 @@ alias mv="mvg -gv"
 alias rm="rm -v"
 # pacman
 alias p="sudo pacman"
+alias pu="sudo pacman -Syyyu"
 # vim/neovim
 alias v="nvim"
 alias vim="nvim"
@@ -24,7 +25,7 @@ alias sv="sudo nvim"
 alias svi="sudo nvim"
 alias svim="sudo nvim"
 alias vrc="v ~/.config/nvim/init.vim"
-alias vst="cd ~/.vim/after && ls"
+alias vs="cd ~/.vim/after && ls"
 # bash
 alias brc="v ~/.bashrc"
 alias bpr="v ~/.bash_profile"
@@ -60,6 +61,7 @@ alias gw='wkon last && cd "$(wkon last)" && la && wkon'
 alias blfm="cd ~/.config/BLFM && la"
 alias ms="cd ~/.config/BLFM/scripts && la"
 alias dot="cd ~/.config/BLFM/dotfiles && la"
+alias ds="cd ~/.config/BLFM/dwm_status && la"
 # python virtualenv manager
 alias pvm="source ~/.config/pvm/pvm"
 # memo

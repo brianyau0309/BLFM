@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Dependency
+# xclip, qrencode, feh
+
+xclip -selection clipboard -o | qrencode -o - |  feh -

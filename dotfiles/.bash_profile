@@ -45,3 +45,4 @@ export GTK_THEME=Arc-Dark
 
 # auto startx in tty1
 [ "$(tty)" = "/dev/tty1" ] && { pgrep -x dwm || exec startx; }
+source "$HOME/.cargo/env"

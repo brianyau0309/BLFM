@@ -14,7 +14,7 @@ swipe:
     right:
       command: 'xdotool key super+j' # Next window
     up:
-      command: 'xdotool key super+space' # Toggle floating
+      command: 'xdotool key super+shift+space' # Switch layout
     down:
       command: 'xdotool key super+q' # Close window
       threshold: 0.5

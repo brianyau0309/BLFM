@@ -12,9 +12,9 @@ autoload -U colors && colors
 
 # PROMPT
 if [ "$(whoami)" = 'root' ]; then
-  PS1='%B%F{yello}[%1~]%b%f 😎 '
+  PS1='%B%F{magenta}[%F{yello}%1~%F{cyan}]%b%f 😎 '
 else
-  PS1='%B%F{yello}[%1~]%b%f %(?.😄.😫) '
+  PS1='%B%F{magenta}[%F{yello}%1~%F{cyan}]%b%f %(?.😄.😫) '
 fi
 RPROMPT='%B%F{green}$(gitbranch)%b%f'
 
@@ -48,17 +48,17 @@ bindkey '^e' edit-command-line
 [ -f ~/.zalias ] && source ~/.zalias
 
 # Plugin
+source /usr/share/doc/find-the-command/ftc.zsh quiet noprompt
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 bindkey '^k' autosuggest-accept
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/share/doc/find-the-command/ftc.zsh quiet noprompt
 
 # Personal
 if [ "$(whoami)" = 'root' ]; then
 else
-  [ -z $(wkon anchor) ] || cd $(wkon anchor)
+  [ -z $WKON_PATH ] || cd $(wkon anchor)
 fi
 
 export NVM_DIR="$HOME/.nvm"

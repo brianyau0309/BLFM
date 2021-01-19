@@ -5,7 +5,7 @@
 # autodisplay above
 blugon -S 5200 &
 dwm_status 2>/dev/null &
-picom -cf -D 3 -I 0.04 -b &
+picom -b
 dunst &
 pulseeffects --gapplication-service >/dev/null 2>/dev/null &
 fcitx >/dev/null 2>/dev/null &
@@ -17,4 +17,6 @@ setbg random nonotify
 xobctl set volume >/dev/null &
 xobctl set brightness >/dev/null &
 setxkbmap -option caps:swapescape
+# xmodmap ~/.config/.Xmodmap
 thunderbird &
+telegram-desktop &

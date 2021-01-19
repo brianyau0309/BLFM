@@ -36,3 +36,4 @@ export XMODIFIERS="@im=fcitx"
 export GTK_IM_MODULE=fcitx
 export GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0
 export GTK_THEME=Arc-Dark
+source "$HOME/.cargo/env"
