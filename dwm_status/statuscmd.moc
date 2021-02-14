@@ -1,6 +1,6 @@
 #!/bin/sh
 
 case $BUTTON in
-	1) audio toggle;;
-	3) audio mixer;;
+	1) mocp -M ~/.config/moc --toggle-pause && refstatus ;;
+	3) st -e mocp -M ~/.config/moc ;;
 esac

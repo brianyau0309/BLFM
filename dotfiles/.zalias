@@ -6,4 +6,4 @@ alias -s {pdf,ebup}='devour zathura'
 alias -s {mp4,mp3,m4a,wav,mkv,avi,flv}='devour mpv'
 alias -s {jpg,png,jepg,gif.bmp}='devour sxiv'
 alias -s {doc,docx,ppt,pptx,xls,xlsx}='devour libreoffice'
-alias -s {py,js,jsx,css,html,vue,tex,ms,md,txt,conf,c,cshtml,cpp,cs,go,xml,yml,json}=vim
+alias -s {py,js,ts,jsx,tsx,css,html,vue,tex,ms,md,txt,conf,c,cshtml,cpp,cs,go,xml,yml,json}=vim

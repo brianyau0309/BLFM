@@ -52,7 +52,7 @@ source /usr/share/doc/find-the-command/ftc.zsh quiet noprompt
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
-bindkey '^k' autosuggest-accept
+bindkey '^n' autosuggest-accept
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Personal

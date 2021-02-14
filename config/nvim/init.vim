@@ -15,16 +15,18 @@ let mapleader=" "
 let &t_SI="\<esc>[2 q"
 let &t_SR="\<esc>[4 q"
 let &t_EI="\<esc>[2 q"
-let g:sneak#label = 1
-
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
+" Plug 'dhruvasagar/vim-table-mode'
+" Plug 'luochen1990/rainbow'
+" Plug 'justinmk/vim-sneak'
+" Plug 'voldikss/vim-floaterm'
+" Plug 'junegunn/goyo.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -32,14 +34,12 @@ Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 Plug 'ap/vim-css-color'
 Plug 'mattn/emmet-vim'
-Plug 'luochen1990/rainbow'
 Plug 'dense-analysis/ale'
-Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mcchrish/nnn.vim'
-Plug 'voldikss/vim-floaterm'
-Plug 'justinmk/vim-sneak'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'easymotion/vim-easymotion'
 Plug 'mbbill/undotree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " coc-pairs
@@ -60,7 +60,7 @@ set mouse+=niv
 set conceallevel=2
 set pumheight=15
 set number relativenumber
-set updatetime=200
+set updatetime=300
 set viminfo+=n~/.vim/nviminfo
 set fileencodings-=latin1
 set fileencodings+=big5,gbk,latin1
@@ -70,7 +70,8 @@ set smartindent linebreak
 set foldmethod=manual
 " Highlight
 set hlsearch smartcase ignorecase
-hi Comment ctermfg=36
+hi Comment ctermfg=67
+" hi Comment ctermfg=32
 hi QuickFixLine cterm=None
 hi Search ctermbg=242
 hi TabLineSel ctermbg=white ctermfg=black
@@ -87,9 +88,10 @@ hi DiffChange ctermfg=0 ctermbg=yellow
 hi DiffDelete ctermfg=0 ctermbg=red
 hi DiffText ctermfg=0 ctermbg=blue
 hi Pmenu ctermfg=7 ctermbg=239
+hi FloatermBorder ctermfg=7 ctermbg=None
 hi link sassClass Special
 " vim_indent_guides
-hi IndentGuidesEven ctermbg=17
+hi IndentGuidesEven ctermbg=236
 " Git Gutter
 hi GitGutterAdd ctermbg=None ctermfg=green
 hi GitGutterChange ctermbg=None ctermfg=yellow
@@ -131,7 +133,8 @@ let g:netrw_hide = 0
 " ale
 let g:ale_linters = { 'python': ['flake8'],
                     \ 'c': ['gcc'],
-                    \ 'javascript': ['eslint'],
+                    \ 'javascript': ['eslint', 'tsserver'],
+                    \ 'typescript': ['eslint', 'tsserver'],
                     \ 'rust': ['rustc', 'cargo'],
                     \ 'go': ['gopls'] }
 let g:ale_linters_explicit = 1
@@ -140,8 +143,10 @@ let g:ale_sign_warning = '🤔'
 hi clear ALEErrorSign
 hi clear ALEWarningSign
 " vim-closetag
-let g:closetag_filenames = '*.xml,*.html,*.cshtml,*.js,*.jsx,*.vue'
+let g:closetag_filenames = '*.xml,*.html,*.cshtml,*.js,*.jsx,*.vue,*.svelte'
 " fzf.vim
+" let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'yoffset': 1, 'border': 'horizontal' } }
+let g:fzf_layout = { 'down': '50%' }
 let g:fzf_buffers_jump = 1
 let g:fzf_action = { 'enter': 'drop',
                    \ 'ctrl-t': 'tab drop',
@@ -159,6 +164,10 @@ let g:indent_guides_auto_colors = 0
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDDefaultAlign = 'left'
+" Sneak
+" let g:sneak#label = 1
+" Easymotion
+let g:EasyMotion_enter_jump_first = 1
 
 
 " Key mapping
@@ -166,8 +175,9 @@ noremap <silent> <F1> :silent! setlocal spell! spelllang=en_uk<CR>
 set pastetoggle=<F2>
 noremap <silent> <F11> :call G2BSC()<CR>
 noremap <silent> <F12> :call B2GSC()<CR>
-nnoremap <silent> K :silent! nohls<CR>
+" nnoremap <silent> K :silent! nohls<CR>
 nnoremap n nzz
+nnoremap N Nzz
 nnoremap <leader>] :!ctags -R<CR>
 nnoremap <leader>a mmggVG
 " Window move
@@ -213,13 +223,21 @@ vnoremap <Left> <nop>
 vnoremap <Down> <nop>
 vnoremap <Up> <nop>
 vnoremap <Right> <nop>
-" coc-pairs
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap {<Space> {<Space><Space>}<Left><Left>
-inoremap [<Space> [<Space><Space>]<Left><Left>
 " ALE
 nnoremap <silent>]e :ALENext<CR>
 nnoremap <silent>[e :ALEPrevious<CR>
+nmap <silent>gd :ALEGoToDefinition<CR>
+" coc
+nnoremap <silent> <leader>h :call CocActionAsync('doHover')<cr>
+" coc-prettier
+nnoremap <silent> == :CocCommand prettier.formatFile<CR>
+" coc-pairs
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap {<Space> {<Space><Space>}<Left><Left>
+" inoremap [<Space> [<Space><Space>]<Left><Left>
+" Easymotion
+nmap s <Plug>(easymotion-s)
+nmap S <Plug>(easymotion-overwin-f2)
 
 
 " Abbreviate
@@ -301,3 +319,10 @@ function! B2GSC()
     call B2G()
   endif
 endfunction
+
+command! -bang -nargs=* RG
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case --no-ignore -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+inoremap <silent><expr> <C-Space> coc#refresh()

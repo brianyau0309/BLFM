@@ -1,7 +1,11 @@
 {
   "diagnostic.enable": false,
   "suggest.noselect": false,
+  "coc.preferences.hoverTarget": "float",
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "json"
+    // "json",
+    "javascript",
+    "typescript"
   ]
 }
