@@ -5,7 +5,8 @@
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "coc.preferences.formatOnSaveFiletypes": [
     // "json",
-    "javascript",
-    "typescript"
+    // "javascript",
+    "typescript",
+    "typescriptreact"
   ]
 }

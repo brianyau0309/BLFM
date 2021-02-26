@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'justinmk/vim-sneak'
 " Plug 'voldikss/vim-floaterm'
 " Plug 'junegunn/goyo.vim'
+Plug 'voldikss/vim-translator'
 Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -62,6 +63,7 @@ set pumheight=15
 set number relativenumber
 set updatetime=300
 set viminfo+=n~/.vim/nviminfo
+set undofile
 set fileencodings-=latin1
 set fileencodings+=big5,gbk,latin1
 " Indent & Linebreak
@@ -134,7 +136,9 @@ let g:netrw_hide = 0
 let g:ale_linters = { 'python': ['flake8'],
                     \ 'c': ['gcc'],
                     \ 'javascript': ['eslint', 'tsserver'],
-                    \ 'typescript': ['eslint', 'tsserver'],
+                    \ 'javascriptreact': ['eslint', 'tsserver'],
+                    \ 'typescript': ['eslint', 'tsserver', 'tslint'],
+                    \ 'typescriptreact': ['eslint', 'tsserver'],
                     \ 'rust': ['rustc', 'cargo'],
                     \ 'go': ['gopls'] }
 let g:ale_linters_explicit = 1
@@ -143,7 +147,7 @@ let g:ale_sign_warning = '🤔'
 hi clear ALEErrorSign
 hi clear ALEWarningSign
 " vim-closetag
-let g:closetag_filenames = '*.xml,*.html,*.cshtml,*.js,*.jsx,*.vue,*.svelte'
+let g:closetag_filenames = '*.xml,*.html,*.cshtml,*.js,*.jsx,*.tsx,*.vue,*.svelte'
 " fzf.vim
 " let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'yoffset': 1, 'border': 'horizontal' } }
 let g:fzf_layout = { 'down': '50%' }
@@ -168,7 +172,9 @@ let g:NERDDefaultAlign = 'left'
 " let g:sneak#label = 1
 " Easymotion
 let g:EasyMotion_enter_jump_first = 1
-
+" vim-translator
+let g:translator_target_lang = 'zh-TW'
+hi TranslatorBorder ctermbg=none
 
 " Key mapping
 noremap <silent> <F1> :silent! setlocal spell! spelllang=en_uk<CR>
@@ -229,6 +235,7 @@ nnoremap <silent>[e :ALEPrevious<CR>
 nmap <silent>gd :ALEGoToDefinition<CR>
 " coc
 nnoremap <silent> <leader>h :call CocActionAsync('doHover')<cr>
+inoremap <silent><expr> <C-Space> coc#refresh()
 " coc-prettier
 nnoremap <silent> == :CocCommand prettier.formatFile<CR>
 " coc-pairs
@@ -238,6 +245,9 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 " Easymotion
 nmap s <Plug>(easymotion-s)
 nmap S <Plug>(easymotion-overwin-f2)
+" vim-translator
+nmap <silent> <Leader>t <Plug>TranslateW
+vmap <silent> <Leader>t <Plug>TranslateWV
 
 
 " Abbreviate
@@ -320,9 +330,8 @@ function! B2GSC()
   endif
 endfunction
 
+" ripgrep no ignore
 command! -bang -nargs=* RG
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case --no-ignore -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
-
-inoremap <silent><expr> <C-Space> coc#refresh()
