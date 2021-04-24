@@ -54,6 +54,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 bindkey '^n' autosuggest-accept
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.config/.rga-fzf.zsh ] && source ~/.config/.rga-fzf.zsh
 
 # Personal
 if [ "$(whoami)" = 'root' ]; then

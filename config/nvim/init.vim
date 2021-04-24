@@ -139,7 +139,7 @@ let g:ale_linters = { 'python': ['flake8'],
                     \ 'javascriptreact': ['eslint', 'tsserver'],
                     \ 'typescript': ['eslint', 'tsserver', 'tslint'],
                     \ 'typescriptreact': ['eslint', 'tsserver'],
-                    \ 'rust': ['rustc', 'cargo'],
+                    \ 'rust': ['rls','rustc', 'cargo'],
                     \ 'go': ['gopls'] }
 let g:ale_linters_explicit = 1
 let g:ale_sign_error = '🤬'

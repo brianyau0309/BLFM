@@ -1,5 +1,5 @@
 #!/bin/sh
 
 case $BUTTON in
-	1) sudo stacer ;;
+	1) stacer ;;
 esac
