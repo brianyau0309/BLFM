@@ -6,7 +6,6 @@ alias lla="ls -la --git"
 alias tree="ls -T"
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
-alias h='history'
 alias sctl='sudo systemctl'
 alias sdn="sudo shutdown -h now"
 alias pt="sudo powertop"
@@ -55,7 +54,7 @@ alias mpv.webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
 # dragon
 alias dra="dragon-drag-and-drop"
 # wkon
-alias gh="cd && wkon home"
+alias h="cd && wkon home"
 alias gw='wkon last && cd "$(wkon last)" && la && wkon'
 # Folder
 alias blfm="cd ~/.config/BLFM && la"

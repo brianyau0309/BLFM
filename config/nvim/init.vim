@@ -74,6 +74,7 @@ set foldmethod=manual
 set hlsearch smartcase ignorecase
 hi Comment ctermfg=67
 " hi Comment ctermfg=32
+hi Visual cterm=reverse ctermbg=none
 hi QuickFixLine cterm=None
 hi Search ctermbg=242
 hi TabLineSel ctermbg=white ctermfg=black

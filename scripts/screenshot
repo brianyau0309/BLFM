@@ -6,7 +6,7 @@
 #   - libnotify
 #   - dunst
 
-screenshot="/tmp/screenshot.png"
+screenshot="/tmp/screenshot$(date '+%Y%m%d%H%M%S').png"
 
 fullscreen() {
   (scrot --silent --overwrite --pointer $screenshot &&

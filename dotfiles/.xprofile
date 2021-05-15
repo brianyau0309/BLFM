@@ -3,6 +3,7 @@
 # xrandr --addmode Virtual-1 "1920x1080_60.00"
 # resolution full norestore
 # autodisplay above
+setxkbmap -option caps:swapescape &
 blugon -S 5200 &
 dwm_status 2>/dev/null &
 picom -b
@@ -17,7 +18,7 @@ setbg random nonotify
 # nitrogen --restore
 xobctl set volume >/dev/null &
 xobctl set brightness >/dev/null &
-setxkbmap -option caps:swapescape
 # xmodmap ~/.config/.Xmodmap
 thunderbird &
 telegram-desktop &
+kdeconnect-cli --refresh &

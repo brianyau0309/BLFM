@@ -15,6 +15,6 @@ case "$option" in
     refstatus
     ;;
   "Open Bluetoothctl")
-    st -e bluetoothctl
+    alacritty -t bluetoothctl -e bluetoothctl
     ;;
 esac

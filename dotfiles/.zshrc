@@ -14,7 +14,7 @@ autoload -U colors && colors
 if [ "$(whoami)" = 'root' ]; then
   PS1='%B%F{magenta}[%F{yello}%1~%F{cyan}]%b%f 😎 '
 else
-  PS1='%B%F{magenta}[%F{yello}%1~%F{cyan}]%b%f %(?.😄.😫) '
+  PS1='%B%F{magenta}[%F{yello}%1~%F{cyan}]%b%f %(?.😆.🥲) '
 fi
 RPROMPT='%B%F{green}$(gitbranch)%b%f'
 
@@ -48,9 +48,10 @@ bindkey '^e' edit-command-line
 [ -f ~/.zalias ] && source ~/.zalias
 
 # Plugin
-source /usr/share/doc/find-the-command/ftc.zsh quiet noprompt
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+[ -f /home/brian/.config/shonenjump.zsh ] && source /home/brian/.config/shonenjump.zsh
+# [ -f /usr/share/doc/find-the-command/ftc.zsh ] && source /usr/share/doc/find-the-command/ftc.zsh quiet noprompt
+[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 bindkey '^n' autosuggest-accept
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

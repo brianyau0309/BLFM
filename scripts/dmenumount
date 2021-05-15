@@ -36,7 +36,7 @@ mountsshfs() {
 
   selected=$(echo "Open config\n$list" | dmenu -i -l 10 -p "sshfs")
   [ -z "$selected" ] && exit
-  [ "$selected" = "Open config" ] && st -e vim $HOME/.ssh/ssh_list && exit
+  [ "$selected" = "Open config" ] && alacritty -e vim $HOME/.ssh/ssh_list && exit
 
   info=$(sed -n "/$selected/,/^$/p" $ssh_list)
   user=$(echo "$info" | grep 'USER:' | sed -e 's/USER://')
