@@ -1,0 +1,4 @@
+prettier.formatFile
+tabnine.updateTabNine
+tabnine.openConfig
+tsserver.executeAutofix

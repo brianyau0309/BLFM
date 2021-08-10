@@ -2,3 +2,5 @@ scripts/testscript
 config/moc/playlist*
 config/mpv/watch_later
 config/nvim/.netrwhist
+node_modules
+config/nvim/coc/extensions/

@@ -1,6 +1,5 @@
-set -g default-terminal "tmux-256color"
+set -g default-terminal "screen-256color"
 set-option -g status-position top
-set-option -g history-limit 99999
 
 set -g status-left ' 🖥  #S 🔳 #P#{?window_zoomed_flag, 🔍, }| '
 set -g status-left-length 30
@@ -17,11 +16,8 @@ bind C-l send-keys 'C-l'
 # bind k select-pane -U
 # bind l select-pane -R
 
-# bind '"' split-window -h
-# bind = split-window -v
-bind c new-window -c "#{pane_current_path}"
-bind = split-window -c "#{pane_current_path}"
-bind '"' split-window -h -c "#{pane_current_path}"
+bind '"' split-window -h
+bind = split-window -v
 
 set -sg escape-time 0
 

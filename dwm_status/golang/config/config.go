@@ -11,7 +11,7 @@ func Get() block.List {
 		block.New("\x03", "status.wkon",      0),
 		block.New("\x04", "status.storage",  30),
 		block.New("\x05", "status.battery",  30),
-		block.New("\x06", "status.date",      5),
+		block.New("\x06", "status.date",      1),
 		block.New("\x07", "status.audio",     0),
 		block.New("\x08", "status.bluetooth", 0),
 		block.New("\x09", "status.notify",    0),

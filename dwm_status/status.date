@@ -1,4 +1,4 @@
 #!/bin/sh
 
 date '+🗓
-%a %d-%b %H:%M:%S'
+%a %d-%B %H:%M:%S'

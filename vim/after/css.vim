@@ -22,11 +22,11 @@ ia <buffer> va vertiacl-align:
 ia <buffer> td text-decoration:
 ia <buffer> tr transition:
 ia <buffer> tf transform:
-  ia <buffer> tsx translateX()<Left>
-  ia <buffer> tsy translateY()<Left>
-  ia <buffer> ro rotate()<Left>
-  ia <buffer> rox rotateX()<Left>
-  ia <buffer> roy rotatey()<Left>
+ia <buffer> tsx translateX()<Left>
+ia <buffer> tsy translateY()<Left>
+ia <buffer> ro rotate()<Left>
+ia <buffer> rox rotateX()<Left>
+ia <buffer> roy rotatey()<Left>
 ia <buffer> ov overflow:
 ia <buffer> ovx overflow-x:
 ia <buffer> ovy overflow-y:

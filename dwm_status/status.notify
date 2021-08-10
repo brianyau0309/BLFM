@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # [ -f /tmp/.dunsttoggle ] && echo 🔕 || echo 🔔
-[ "$(dunstctl is-paused)" = "true" ] && echo 🔕 || echo 🔔
+[ "$(dunstctl is-paused 2>/dev/null)" = "true" ] && echo 🔕 || echo 🔔

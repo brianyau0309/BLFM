@@ -2,5 +2,5 @@
 
 case $BUTTON in
 	1) mocp -M ~/.config/moc --toggle-pause && refstatus ;;
-	3) st -e mocp -M ~/.config/moc ;;
+	3) alacritty -e mocp -M ~/.config/moc ;;
 esac

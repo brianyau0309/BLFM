@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/dash
 
 msgId="991050"
 
 connecting=$(nmcli device | grep "wifi " | awk '{print $4}')
-[ "$connecting" = '--' ] && option="Select Wifi" || option=$(echo "Select Wifi\nDisconnect: $connecting\nRefresh Wire Connection\nVPN" | dmenu -l 3 -p Option -i)
+[ "$connecting" = '--' ] && option="Select Wifi" || option=$(echo "Select Wifi\nDisconnect: $connecting\nRefresh Wire Connection\nEnd Wire Connection\nVPN" | dmenu -l 5 -p Option -i)
 
 [ -z "$option" ] && exit
 if [ "$option" = "Select Wifi" ];
@@ -39,6 +39,10 @@ then
 elif [ "$option" = "Refresh Wire Connection" ];
 then
   sudo ifconfig eno1 down && sudo ifconfig eno1 up && sleep 5
+
+elif [ "$option" = "End Wire Connection" ];
+then
+  sudo ifconfig eno1 down && sleep 5
 
 elif [ "$option" = "VPN" ];
 then

@@ -1,24 +1,34 @@
 #!/bin/sh
+
+### Setting
 # xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
 # xrandr --addmode Virtual-1 "1920x1080_60.00"
 # resolution full norestore
 # autodisplay above
+# nitrogen --restore
+# sudo xbacklight -set 20
+# xmodmap ~/.config/.Xmodmap
+# /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh &
 setxkbmap -option caps:swapescape &
 blugon -S 5200 &
+setbg random nonotify
+
+
+### Daemon
+# pulseeffects --gapplication-service >/dev/null 2>/dev/null &
 dwm_status 2>/dev/null &
-picom -b
+picom --experimental-backends -b
 dunst &
-pulseeffects --gapplication-service >/dev/null 2>/dev/null &
 fcitx >/dev/null 2>/dev/null &
 fusuma >/dev/null 2>/dev/null &
 clipmenud &
 flameshot &
-# sudo xbacklight -set 20
-setbg random nonotify
-# nitrogen --restore
 xobctl set volume >/dev/null &
 xobctl set brightness >/dev/null &
-# xmodmap ~/.config/.Xmodmap
+kdeconnect-cli --refresh &
+
+
+### Open on startup
 thunderbird &
 telegram-desktop &
-kdeconnect-cli --refresh &
+clickup-web &

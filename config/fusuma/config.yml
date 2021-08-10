@@ -5,16 +5,16 @@ swipe:
     right:
       command: 'xdotool key super+Tab' # Previous active tag
     up:
-      command: 'xdotool key super+f' # Toggle full screen
+      command: 'xdotool key super+shift+space' # Switch layout
     down:
-      command: 'xdotool key super+f' # Toggle full screen
+      command: 'xdotool key super+shift+m' # Switch layout
   4:
     left:
       command: 'xdotool key super+k' # Previous window
     right:
       command: 'xdotool key super+j' # Next window
     up:
-      command: 'xdotool key super+shift+space' # Switch layout
+      command: 'xdotool key super+f' # Toggle full screen
     down:
       command: 'xdotool key super+q' # Close window
       threshold: 0.5

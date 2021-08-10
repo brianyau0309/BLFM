@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "650x5-11+35"
+    geometry = "425x5-2+20"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -41,7 +41,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 25
+    transparency = 10
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
@@ -54,10 +54,10 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 12
+    padding = 8
 
     # Horizontal padding.
-    horizontal_padding = 15
+    horizontal_padding = 10
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
@@ -86,7 +86,7 @@
 
     ### Text ###
 
-    font = CascadiaCode 12
+    font = CascadiaCode 9
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -130,7 +130,7 @@
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
-    alignment = center
+    alignment = left
 
     # Show age of message if message is older than show_age_threshold
     # seconds.
@@ -139,11 +139,11 @@
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = yes
+    word_wrap = no
 
     # When word_wrap is set to no, specify where to make an ellipsis in long lines.
     # Possible values are "start", "middle" and "end".
-    ellipsize = middle
+    ellipsize = end
 
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
@@ -163,7 +163,7 @@
     icon_position = left
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 72
+    max_icon_size = 45
 
     # Paths to default icons.
     #icon_path = /home/brian/Downloads/universal-16-512.png

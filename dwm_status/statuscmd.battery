@@ -1,5 +1,5 @@
 #!/bin/sh
 
 case $BUTTON in
-	1) st -e sudo powertop ;;
+	1) alacritty -e sudo powertop ;;
 esac

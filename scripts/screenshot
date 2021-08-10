@@ -20,6 +20,6 @@ selection() {
 }
 
 case "$1" in
-  full) fullscreen ;;
-  select) selection ;;
+  f|full) fullscreen ;;
+  s|select) selection ;;
 esac

@@ -3,9 +3,10 @@
 # - dmenu
 #   Show option
 
-case "$(echo "Logout\nReboot\nShutdown" | dmenu -i -p 'Power Options')" in
+case "$(echo "Logout\nReboot\nShutdown\nReload" | dmenu -i -p 'Power Options')" in
   Logout) pkill Xorg ;;
   Reboot) reboot ;;
   Shutdown) sudo shutdown -h now ;;
+  Reload) xdotool key super+shift+F12 ;;
   *) ;;
 esac

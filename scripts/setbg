@@ -9,8 +9,8 @@
 # - libnotify
 #   Show notification
 
-wall="$HOME/.config/wallpaper/wall" #Wallpaper Location
-imgloc="$HOME/.config/wallpaper/images" #Images Location
+wall="$HOME/.config/wallpaper/wall" # Wallpaper Location
+imgloc="$HOME/.config/wallpaper/images" # Images Location
 case "$1" in
   restore) xwallpaper --zoom "$wall"; exit ;;
   random) select="$imgloc/$(ls "$imgloc" | shuf -n 1)" ;;
@@ -18,4 +18,3 @@ case "$1" in
   *) echo "\033[31mError: setbg Need a valid argument"; exit 1 ;;
 esac
 [ "$select" = "" ] || (ln -sf "$select" "$wall"; xwallpaper --zoom "$wall"; [ "$2" = "nonotify" ] || notify-send --icon="$wall" "Setbg" "Background Changed")
-
