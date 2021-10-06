@@ -8,12 +8,35 @@
 #   set x wallpaper
 # - libnotify
 #   Show notification
-
 wall="$HOME/.config/wallpaper/wall" # Wallpaper Location
 imgloc="$HOME/.config/wallpaper/images" # Images Location
+[ -d "$imgloc" ] || exit 1
+
+bingWallpaper () {
+  bing='https://www.bing.com'
+  imgapipath='/HPImageArchive.aspx?format=js&idx=0&n=1'
+  json=$(curl -s "$bing$imgapipath")
+  fileurl=$(echo $json | jq -r ".images[0].url")
+  filename=$(echo $json | jq ".images[0].urlbase" | sed -e s/\"\\/th\?id=// -e s/\"/.jpeg/)
+  [ -f "$imgloc/$filename" ] || curl -s "$bing$fileurl" --output "$imgloc/$filename"
+  select="$imgloc/$filename"
+}
+
+unsplashWallpaper () {
+  unsplash='https://source.unsplash.com'
+  keyword=${1:-wallpaper}
+  resolution=${2:-3840x2160}
+  fileurl=$(curl -s "$unsplash/$resolution/?$keyword" | xmllint --xpath 'string(/html/body/a/@href)' -)
+  filename=$(echo $fileurl | python3 -c 'from urllib import parse; import sys; path = parse.urlparse(sys.stdin.read().strip()).path; print("/" if not path or path == "/" else path.rsplit("/", 1)[-1])')
+  [ -f "$imgloc/$filename.jpeg" ] || curl -s "$fileurl" --output "$imgloc/$filename.jpeg"
+  select="$imgloc/$filename.jpeg"
+}
+
 case "$1" in
   restore) xwallpaper --zoom "$wall"; exit ;;
   random) select="$imgloc/$(ls "$imgloc" | shuf -n 1)" ;;
+  bing) bingWallpaper ;;
+  unsplash) unsplashWallpaper "$2" "$3" ;;
   "") select="$(sxiv -fto "$imgloc" | head -1)" ;;
   *) echo "\033[31mError: setbg Need a valid argument"; exit 1 ;;
 esac

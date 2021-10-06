@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mem="$(free-memory-percent)"
+[ "$mem" = "" ] || echo "🧠 $mem"

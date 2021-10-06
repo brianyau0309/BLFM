@@ -1,0 +1,5 @@
+#!/bin/sh
+
+status=$(pgrep kdeconnectd)
+
+[ -z "$status" ] && echo 📵 || echo 📱

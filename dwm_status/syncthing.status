@@ -1,0 +1,5 @@
+#!/bin/bash
+
+status=$(pgrep syncthing)
+
+[ -z "$status" ] && echo "!!" || echo 

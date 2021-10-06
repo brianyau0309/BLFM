@@ -29,7 +29,7 @@ export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-ran
 export FZF_ALT_C_COMMAND="fd -t d"
 export FZF_ALT_C_OPTS="--preview 'exa -g --color=auto --group-directories-first -la --git {}'"
 
-export NODE_REPL_HISTORY=""
+export NODE_REPL_HISTORY="~/.cache/node_repl_history"
 
 export XIM_PROGRAM=fcitx
 export XIM=fcitx

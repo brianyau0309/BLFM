@@ -1,5 +1,9 @@
 #!/bin/sh
 
+### System
+nmcli device wifi hotspot ifname wlp1s0 ssid code01-eno1 password "$(cat ~/.config/wifipass)" &
+
+
 ### Setting
 # xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
 # xrandr --addmode Virtual-1 "1920x1080_60.00"
@@ -11,7 +15,8 @@
 # /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh &
 setxkbmap -option caps:swapescape &
 blugon -S 5200 &
-setbg random nonotify
+check-if-internet && setbg bing nonotify || setbg random nonotify
+# setbg restore nonotify || setbg random nonotify
 
 
 ### Daemon
@@ -26,6 +31,8 @@ flameshot &
 xobctl set volume >/dev/null &
 xobctl set brightness >/dev/null &
 kdeconnect-cli --refresh &
+pause-on-remove-sink &
+blueman-applet 2>/dev/null &
 
 
 ### Open on startup

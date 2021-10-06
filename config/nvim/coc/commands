@@ -1,4 +1,7 @@
 prettier.formatFile
+rls.run
+rls.update
+sql.Format
 tabnine.updateTabNine
 tabnine.openConfig
 tsserver.executeAutofix

@@ -2,4 +2,5 @@
 
 case $BUTTON in
 	1) dmenublue ;;
+	3) blueman-manager ;;
 esac

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+device="$(pulsemixer --list-sink | grep Default | grep "sink-1,")"
+
+high() {
+  [ "$device" = "" ] && echo  || echo 🔊
+}
+
+medium() {
+  [ "$device" = "" ] && echo  || echo 🔉
+}
+
+low() {
+  [ "$device" = "" ] && echo  || echo 🔈
+}
+
+mute() {
+  [ "$device" = "" ] && echo ﳌ || echo 🔇
+}
+
+# pulseaudio
+volumenum=$(pulsemixer --get-volume | cut -d' ' -f1)
+[ $(pulsemixer --get-mute) -eq 1 ] &&
+  mute ||
+  ( ([ $volumenum -gt 49 ] && high) ||
+    ([ $volumenum -gt 0 ] && medium) ||
+    low)

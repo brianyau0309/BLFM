@@ -1306,3 +1306,11 @@
 🫁 Lungs
 🪶 Feather
 🪦 Headstone RIP
+ sync
+  battery 0
+  battery 25
+  battery 50
+  battery 75
+  battery 100
+ lan connect
+ lan disconnect

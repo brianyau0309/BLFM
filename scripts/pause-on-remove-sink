@@ -1,0 +1,5 @@
+#!/bin/sh
+
+inpregress="$(pgrep -f pactl)"
+
+[ -z $inpregress ] && pactl subscribe | grep --line-buffered "remove.*sink #" | while read -r UNUSED_LINE; do playerctl pause; done

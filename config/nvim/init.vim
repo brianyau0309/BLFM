@@ -18,13 +18,15 @@ let &t_EI="\<esc>[2 q"
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
-" Plug 'dunstontc/vim-vscode-theme'
+Plug 'tomasiser/vim-code-dark'
 " Plug 'rakr/vim-one'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-eunuch'
+Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'mhinz/vim-startify'
 Plug 'mattn/emmet-vim'
 Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-translator'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'preservim/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'sheerun/vim-polyglot'
@@ -42,6 +44,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
 Plug 'mcchrish/nnn.vim'
+Plug 'junegunn/vim-peekaboo'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'easymotion/vim-easymotion'
 Plug 'mbbill/undotree'
@@ -60,14 +63,17 @@ call plug#end()
 " set termguicolors
 syntax on
 syntax enable
+set nocompatible
+set hidden
+set encoding=utf-8
 filetype plugin indent on
 " set background=light
-" colorscheme dark_plus
+" colorscheme codedark
 set mouse+=niv
 set conceallevel=2
 set pumheight=15
 set number relativenumber
-set updatetime=300
+set updatetime=100
 set viminfo+=n~/.vim/nviminfo
 set undofile
 set fileencodings-=latin1
@@ -79,6 +85,8 @@ set foldmethod=manual
 " Highlight
 set hlsearch smartcase ignorecase
 hi Constant cterm=italic,bold ctermfg=1
+" Tabline
+set showtabline=0
 " ctermfg=3
 hi String ctermfg=173
 hi Number ctermfg=173
@@ -90,9 +98,9 @@ hi PreProc cterm=italic,bold
 hi Visual cterm=reverse ctermbg=none
 hi QuickFixLine cterm=None
 hi Search ctermbg=255 ctermfg=0 cterm=bold
-hi TabLineSel ctermbg=white ctermfg=black
-hi clear TabLine
-hi clear TabLineFill
+" hi TabLineSel ctermbg=white ctermfg=black
+" hi clear TabLine
+" hi clear TabLineFill
 hi SpellBad ctermbg=124
 hi Folded ctermbg=None
 hi FoldColumn ctermbg=None
@@ -156,6 +164,20 @@ let g:vim_markdown_new_list_item_indent = 0
 " airline
 let g:airline#extensions#wordcount#filetypes = ['help', 'markdown', 'rst', 'org', 'text', 'asciidoc', 'tex', 'mail', 'ms', 'nroff']
 let g:airline#extensions#scrollbar#enabled = 0
+
+let g:airline#extensions#bufferline#enabled = 0
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#tab_min_count = 2
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#tabline#buffers_label = ''
+
 " nnn
 let g:nnn#command = 'nnn -eH'
 let g:nnn#layout = { 'window': { 'width': 0.8, 'height': 0.8, 'highlight': 'SpecialKey', 'bordor': 'sharp' } }
@@ -210,6 +232,28 @@ let g:vimwiki_ext2syntax = { '.md': 'markdown' }
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json', 'html']
+" peekaboo
+let g:peekaboo_window = "vert bo 70new"
+let g:peekaboo_prefix = '"'
+" startify
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
+" ctrlspace
+let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
+if executable('rg')
+    let g:CtrlSpaceGlobCommand = 'rg --color=never --files --ignore-file=.gitignore'
+elseif executable('fd')
+    let g:CtrlSpaceGlobCommand = 'fd --type=file --color=never'
+elseif executable('ag')
+    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+endif
 
 " Key mapping
 noremap <silent> <F1> :silent! setlocal spell! spelllang=en_uk<CR>
@@ -222,10 +266,10 @@ nnoremap N Nzz
 nnoremap <leader>] :!ctags -R<CR>
 nnoremap <leader>a mmggVG
 " Window move
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 " Replace
 nnoremap <leader>rr :%s//gI<Left><Left><Left>
 vnoremap <leader>r :s//gI<Left><Left><Left>
@@ -264,8 +308,8 @@ vnoremap <Down> <nop>
 vnoremap <Up> <nop>
 vnoremap <Right> <nop>
 " ALE
-nnoremap <silent>]e :ALENext<CR>
-nnoremap <silent>[e :ALEPrevious<CR>
+nnoremap <silent>]e :ALENext<CR>zz
+nnoremap <silent>[e :ALEPrevious<CR>zz
 nmap <silent>gd :ALEGoToDefinition<CR>
 " coc
 nnoremap <silent> <leader>hh :call CocActionAsync('doHover')<cr>
@@ -273,6 +317,7 @@ inoremap <silent><expr> <C-Space> coc#refresh()
 nmap <silent> <leader>rn <Plug>(coc-rename)
 " coc-prettier
 nnoremap <silent> == :CocCommand prettier.formatFile<CR>
+au BufEnter,BufNewFile,BufRead *.rs nnoremap <silent> == :call CocAction('format')<CR>
 " coc-pairs
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Easymotion
