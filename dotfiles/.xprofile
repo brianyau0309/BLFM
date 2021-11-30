@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ### System
-nmcli device wifi hotspot ifname wlp1s0 ssid code01-eno1 password "$(cat ~/.config/wifipass)" &
+# nmcli device wifi hotspot ifname wlp1s0 ssid code01-eno1 password "$(cat ~/.config/wifipass)" &
 
 
 ### Setting
@@ -24,7 +24,7 @@ check-if-internet && setbg bing nonotify || setbg random nonotify
 dwm_status 2>/dev/null &
 picom --experimental-backends -b
 dunst &
-fcitx >/dev/null 2>/dev/null &
+fcitx -D >/dev/null 2>/dev/null &
 fusuma >/dev/null 2>/dev/null &
 clipmenud &
 flameshot &
@@ -39,3 +39,5 @@ blueman-applet 2>/dev/null &
 thunderbird &
 telegram-desktop &
 clickup-web &
+postman &
+dbeaver &

@@ -18,19 +18,19 @@ let &t_EI="\<esc>[2 q"
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
-Plug 'tomasiser/vim-code-dark'
-" Plug 'rakr/vim-one'
-Plug 'tpope/vim-obsession'
+" Plug 'tpope/vim-obsession'
+" Plug 'mhinz/vim-startify'
+" Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'airblade/vim-gitgutter'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'tpope/vim-eunuch'
 Plug 'vim-ctrlspace/vim-ctrlspace'
-Plug 'mhinz/vim-startify'
 Plug 'mattn/emmet-vim'
 Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-translator'
 Plug 'preservim/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'sheerun/vim-polyglot'
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'RRethy/vim-illuminate'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
@@ -157,6 +157,7 @@ match ExtraWhitespace / \+$/
 let g:vim_svelte_plugin_use_typescript = 1
 let g:vim_svelte_plugin_use_less = 1
 let g:vim_svelte_plugin_use_sass = 1
+let g:javascript_plugin_flow = 1
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
@@ -196,7 +197,7 @@ let g:netrw_hide = 0
 " ale
 let g:ale_linters = { 'python': ['flake8'],
                     \ 'c': ['gcc'],
-                    \ 'javascript': ['eslint'],
+                    \ 'javascript': ['eslint', 'flow'],
                     \ 'javascriptreact': ['eslint'],
                     \ 'typescript': ['eslint', 'tsserver', 'tslint'],
                     \ 'typescriptreact': ['eslint', 'tsserver'],
@@ -254,6 +255,27 @@ elseif executable('fd')
 elseif executable('ag')
     let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 endif
+" gitgutter
+let g:gitgutter_sign_added = ''
+let g:gitgutter_sign_modified = ''
+let g:gitgutter_sign_modified_removed = ''
+let g:gitgutter_sign_removed = ''
+" gitsigns
+lua << EOF
+require('gitsigns').setup {
+  signs = {
+    add          = {hl = 'GitGutterAdd',          },
+    change       = {hl = 'GitGutterChange',       },
+    delete       = {hl = 'GitGutterDelete',       },
+    topdelete    = {hl = 'GitGutterDelete',       },
+    changedelete = {hl = 'GitGutterChangeDelete', },
+  },
+  current_line_blame = true,
+  current_line_blame_opts = {
+    delay = 100
+  },
+}
+EOF
 
 " Key mapping
 noremap <silent> <F1> :silent! setlocal spell! spelllang=en_uk<CR>
