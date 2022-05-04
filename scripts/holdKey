@@ -1,0 +1,8 @@
+#!/bin/sh
+
+key="$1"
+sec=${2:-3}
+
+xdotool keydown $key
+sleep $sec
+xdotool keyup $key

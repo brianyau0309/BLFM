@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# https://unix.stackexchange.com/questions/689725/retry-cron-job-on-failure
+
+cmd="$1"
+maxtries="${2:-3}"
+sleeptime="${3:-5s}"
+
+while !(eval "$cmd"); do
+  maxtries=$(( maxtries - 1 ))
+  if [ "$maxtries" -eq 0 ]; then
+    echo Failed >&2
+    exit 1
+  fi
+
+  sleep "$sleeptime" || break
+done

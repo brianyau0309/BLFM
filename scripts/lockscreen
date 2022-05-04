@@ -1,0 +1,3 @@
+#!/bin/sh
+
+betterlockscreen --off 1 --show-layout

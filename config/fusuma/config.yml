@@ -5,20 +5,20 @@ swipe:
     right:
       command: 'xdotool key super+Tab' # Previous active tag
     up:
-      command: 'xdotool key super+shift+m' # Switch layout
+      command: 'xdotool key super+shift+space' # Switch layout to last layout
     down:
-      command: 'xdotool key super+shift+space' # Switch layout
+      command: 'xdotool key super+shift+m' # Switch layout to mono
   4:
     left:
-      command: 'xdotool key super+k' # Previous window
+      command: 'move-to-tag' # Move tag
     right:
-      command: 'xdotool key super+j' # Next window
-    up:
-      command: 'xdotool key super+shift+b' # Toggle bar
-    down:
       command: 'xdotool key super+q' # Close window
       threshold: 0.5
       interval: 1
+    up:
+      command: 'xdotool key super+shift+b' # Toggle bar
+    down:
+      command: 'xdotool key super+space' # Toogle floating
 
 pinch:
   2:

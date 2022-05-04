@@ -36,8 +36,9 @@ blueman-applet 2>/dev/null &
 
 
 ### Open on startup
+tmux has-session -t node14 || tmux new -d -s node14 &
 thunderbird &
 telegram-desktop &
-clickup-web &
 postman &
 dbeaver &
+obsidian &

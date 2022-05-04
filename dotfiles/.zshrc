@@ -14,7 +14,7 @@ autoload -U colors && colors
 if [ "$(whoami)" = 'root' ]; then
   PS1='%B%F{magenta}[%F{yello}%1~%F{cyan}]%b%f 😎 '
 else
-  PS1='%B%F{magenta}[%F{yello}%1~%F{cyan}]%b%f %(?.😆.🥲) '
+  PS1='%B%F{magenta}[%F{yello}%1~%F{cyan}]%b%f %(?.😆.😇) '
 fi
 RPROMPT='%B%F{green}$(gitbranch)%b%f'
 
@@ -64,4 +64,4 @@ else
 fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

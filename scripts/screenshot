@@ -16,7 +16,7 @@ fullscreen() {
 }
 
 selection() {
-  flameshot gui --path /tmp
+  flameshot gui
 }
 
 case "$1" in

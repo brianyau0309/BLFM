@@ -48,6 +48,7 @@ alias zev="v ~/.zshenv"
 # git
 alias g="git"
 # tmux
+alias ta="tmux attach-session"
 alias tmc="v ~/.tmux.conf"
 # xorg
 alias xrc="v ~/.xinitrc"
@@ -63,7 +64,7 @@ alias ytd.ba="youtube-dl -f bestaudio --extract-audio --embed-thumbnail --add-me
 # mpv
 alias mpv.webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed"
 # dragon
-alias dra="dragon-drag-and-drop"
+alias dra="dragon-drop"
 # wkon
 alias h="cd && wkon home"
 alias gw='wkon last && cd "$(wkon last)" && la && wkon'

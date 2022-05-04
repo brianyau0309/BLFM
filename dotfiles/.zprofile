@@ -1,4 +1,5 @@
-export PATH="$HOME/.cargo/bin:$BLFM/dwm_status:$BLFM/scripts:$HOME/.local/bin:$HOME/.local/chrome_apps:$PATH"
+export ANDROID_HOME=/opt/android-sdk
+export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$HOME/.cargo/bin:$BLFM/dwm_status:$BLFM/scripts:$HOME/.local/bin:$HOME/.local/chrome_apps:$PATH"
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 

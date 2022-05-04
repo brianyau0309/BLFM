@@ -345,12 +345,21 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 " Easymotion
 nmap s <Plug>(easymotion-overwin-f)
 nmap S <Plug>(easymotion-overwin-f2)
+vmap s <Plug>(easymotion-overwin-f)
+vmap S <Plug>(easymotion-overwin-f2)
 " vim-translator
 nmap <silent> <Leader>t <Plug>TranslateW
 vmap <silent> <Leader>t <Plug>TranslateWV
 " vim-commentary
 nmap gcp gcap
 nmap gcb gci{
+" H => ^, L => $
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L $
+onoremap H ^
+onoremap L $
 
 
 " Abbreviate
