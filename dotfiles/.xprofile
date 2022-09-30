@@ -22,7 +22,7 @@ check-if-internet && setbg bing nonotify || setbg random nonotify
 ### Daemon
 # pulseeffects --gapplication-service >/dev/null 2>/dev/null &
 dwm_status 2>/dev/null &
-picom --experimental-backends -b
+# picom --experimental-backends -b
 dunst &
 fcitx -D >/dev/null 2>/dev/null &
 fusuma >/dev/null 2>/dev/null &
@@ -33,12 +33,13 @@ xobctl set brightness >/dev/null &
 kdeconnect-cli --refresh &
 pause-on-remove-sink &
 blueman-applet 2>/dev/null &
+# xidlehook --not-when-audio --timer 300 "betterlockscreen -l dim && dunstctl set-paused true" "dunstctl set-paused false" >~/.cache/xidelhook.process.log 2>~/.cache/xidelhook.process.log &
 
 
 ### Open on startup
 tmux has-session -t node14 || tmux new -d -s node14 &
-thunderbird &
-telegram-desktop &
-postman &
-dbeaver &
-obsidian &
+# thunderbird >>/home/brian/.cache/thunderbird.log 2>>/home/brian/.cache/thunderbird.error.log &
+# telegram-desktop >>/home/brian/.cache/telegram.log 2>>/home/brian/.cache/telegram.error.log &
+# postman >>/home/brian/.cache/postman.log 2>>/home/brian/.cache/postman.error.log &
+# dbeaver >>/home/brian/.cache/dbeaver.log 2>>/home/brian/.cache/dbeaver.error.log &
+# obsidian >>/home/brian/.cache/obsidian.log 2>>/home/brian/.cache/obsidian.error.log &

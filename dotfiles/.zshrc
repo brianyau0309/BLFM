@@ -17,6 +17,7 @@ else
   PS1='%B%F{magenta}[%F{yello}%1~%F{cyan}]%b%f %(?.😆.😇) '
 fi
 RPROMPT='%B%F{green}$(gitbranch)%b%f'
+RPROMPT=$RPROMPT' %{$fg[yellow]%}[%D{%d/%m/%y} %D{%H:%M:%S}]'
 
 # History
 HISTSIZE=10000

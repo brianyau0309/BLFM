@@ -16,7 +16,7 @@ func Get() block.List {
 		block.New("\x07", "kdeconnect.status", 30),
 		block.New("\x08", "syncthing.status",  10),
 		block.New("\x09", "bluetooth.status",  30),
-		block.New("\x0B", "notify.status",      0),
+		block.New("\x0B", "notify.status",     30),
 		block.New("\x0C", "audio.status",      30),
 		block.New("\x0D", "internet.status",   30),
 	}

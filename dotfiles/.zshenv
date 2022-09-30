@@ -36,7 +36,11 @@ export XIM=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 
+export _JAVA_AWT_WM_NONREPARENTING=1
+export ANDROID_HOME=~/Android/Sdk
+export CHROME_EXECUTABLE=google-chrome-stable
+
 # export GTK_IM_MODULE=fcitx
-export GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0
-export GTK_THEME=Arc-Dark
+export GTK2_RC_FILES=/usr/share/themes/Adapta-Nokto-Eta/gtk-2.0
+export GTK_THEME=Adapta-Nokto-Eta
 source "$HOME/.cargo/env"

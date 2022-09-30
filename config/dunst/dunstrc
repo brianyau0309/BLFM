@@ -24,7 +24,7 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = (0, 425)
+    width = (150, 425)
 
     # The maximum height of a single notification, excluding the frame.
     height = 300
@@ -33,13 +33,13 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 5x20
+    offset = 5x21
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
 
     # Maximum number of notification (0 means no limit)
-    notification_limit = 0
+    notification_limit = 10
 
     ### Progress bar ###
 
@@ -155,7 +155,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<span weight='bold' line_height='1.5'>%s</span>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -233,7 +233,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 0
+    corner_radius = 12
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this

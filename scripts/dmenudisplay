@@ -4,7 +4,7 @@
 resolution=$(xrandr | sed -ne '/^HDMI-A-0/ { :a; n; p; ba;  }' | awk '{print $1}END{print "Disconnect"}' | dmenu -i -l 20 -p "HDMI Resolution")
 
 [ -z "$resolution" ] && exit 1
-[ "$resolution" = 'Disconnect' ] && xrandr --output HDMI-A-0 --off && exit
+[ "$resolution" = 'Disconnect' ] && xrandr --output HDMI-A-0 --off && power && exit
 position=$(echo "same-as\nabove\nbelow\nright-of\nleft-of" | dmenu -l 5 -p "Position")
 
 xrandr --output HDMI-A-0 --$position eDP --mode "$resolution" --auto
