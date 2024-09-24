@@ -3,9 +3,11 @@
 # - dmenu
 #   Show option
 
-case "$(echo "Logout\nReboot\nShutdown\nReload" | dmenu -i -p 'Power Options')" in
+case "$(echo "Logout\nReboot\nSuspend\nHibernate\nShutdown\nReload" | dmenu -i -p 'Power Options')" in
   Logout) pkill Xorg ;;
-  Reboot) reboot ;;
+  Reboot) sudo systemctl reboot ;;
+  Suspend) sudo systemctl suspend-then-hibernate ;;
+  Hibernate) sudo systemctl hibernate ;;
   Shutdown) sudo shutdown -h now ;;
   Reload) xdotool key super+shift+F12 ;;
   *) ;;

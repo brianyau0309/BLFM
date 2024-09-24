@@ -1,3 +1,5 @@
 #/bin/sh
 
+# https://stackoverflow.com/questions/57686808/error-about-running-go-tour-locally-couldnt-find-tour-files-could-not-find-go#:~:text=export%20GO111MODULE%3Doff
+
 go build dwm_status_loop.go && mv dwm_status_loop .. && refstatus

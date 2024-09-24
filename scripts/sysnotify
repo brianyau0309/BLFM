@@ -1,29 +1,25 @@
 #!/bin/sh
-# Show information of system
-# "dunst" is required
 
-msgId="991049"
 
-# alsa, need alsa-utils
-#volumenum=$(echo $(amixer sget Master | grep 'Mono:' | awk -F"[][]" '{ print $2 }') | sed 's/%//')
-#vicon=$(amixer sget Master | grep off >/dev/null &&
-  #echo 🔇 ||
-  #( ([ $volumenum -gt 80 ] && echo 🔊) ||
-    #([ $volumenum -gt 20 ] && echo 🔉) ||
-    #echo 🔈 )
-#)
+showVolume() {
+  volume=$(pulsemixer --get-volume | cut -d' ' -f1)
+  [ $(pulsemixer --get-mute) -eq 1 ] && mute='!'
+  volumeIcon='🔊'
+  if [ "$mute" = '!' ]; then
+    volumeIcon='🔇'
+  else
+    volumeIcon='🔊'
+  fi
+  dunstify -r 8082 -h int:value:$volume "$volumeIcon Volume"
+}
 
-# pulsemixer, need pulsemixer
-volumenum=$(pulsemixer --get-volume | cut -d' ' -f1)
-vicon=$( [ $(pulsemixer --get-mute) -eq 1 ] &&
-  echo 🔇 ||
-  ( ([ $volumenum -gt 80 ] && echo 🔊) ||
-    ([ $volumenum -gt 20 ] && echo 🔉) ||
-    echo 🔈 )
-)
+showBrightness() {
+  brightness=$(xbacklight -get)
+  dunstify -r 8081 -h int:value:$brightness "🌞 Brightness"
+}
 
-brightness=$(xbacklight -get)
-
-msg="$vicon $volumenum%\n🌞 $brightness%"
-
-dunstify -a "System Control" -u low -I "$HOME/.config/icons/setting.png" -r "$msgId" "System Control" "$msg"
+case "$1" in
+  volume) showVolume ;;
+  brightness) showBrightness ;;
+  *) echo "Invalid argument" ;;
+esac

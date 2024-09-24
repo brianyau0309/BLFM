@@ -1,25 +1,32 @@
 #!/bin/sh
 
-device="$(pulsemixer --list-sink | grep Default | grep "sink-1,")"
+device="$(pulsemixer --list-sink 2>/dev/null | grep Default | grep " Built-in ")"
+if [ -z "$device" ]; then
+  echo 󰋋
+fi
 
 high() {
-  [ "$device" = "" ] && echo  || echo 🔊
+  echo 󰕾
 }
 
 medium() {
-  [ "$device" = "" ] && echo  || echo 🔉
+  echo 󰖀
 }
 
 low() {
-  [ "$device" = "" ] && echo  || echo 🔈
+  echo 󰕿
 }
 
 mute() {
-  [ "$device" = "" ] && echo ﳌ || echo 🔇
+  echo 󰝟
 }
 
 # pulseaudio
-volumenum=$(pulsemixer --get-volume | cut -d' ' -f1)
+volumenum=$(pulsemixer --get-volume 2>/dev/null | cut -d' ' -f1)
+if [ -z "$volumenum" ]; then
+  echo ⚠
+  exit
+fi
 [ $(pulsemixer --get-mute) -eq 1 ] &&
   mute ||
   ( ([ $volumenum -gt 49 ] && high) ||

@@ -1,11 +1,23 @@
 #!/bin/sh
 # Backlight Control
 
+preventLowerThanZero() {
+  newVal=$(sudo xbacklight -get)
+  [ $newVal -lt 1 ] && sudo xbacklight -set 1 -steps 1 || exit 0
+}
+
 num="${2:-5}"
+steps="8"
 case "$1" in
-  set) sudo xbacklight -set "$num" -step 5 ;;
-  up) sudo xbacklight -inc "$num" -step 5 ;;
-  down) sudo xbacklight -dec "$num" -step 5 ;;
+  set)
+    sudo xbacklight -set "$num" -steps $steps
+    preventLowerThanZero
+  ;;
+  up) sudo xbacklight -inc "$num" -steps $steps ;;
+  down)
+    sudo xbacklight -dec "$num" -steps $steps
+    preventLowerThanZero
+  ;;
   *) echo "Invalid argument" && exit ;;
 esac >/dev/null
 # xobcontrol show brightness

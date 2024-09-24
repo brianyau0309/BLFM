@@ -1,4 +1,8 @@
 #!/bin/sh
 
-mem="$(free-memory-percent)"
+freeMemoryPercent() {
+  free | awk '/Mem/{printf("%.0f%"), $3/($2+.000000001)*100}'
+}
+
+mem="$(freeMemoryPercent)"
 [ "$mem" = "" ] || echo "🧠 $mem"

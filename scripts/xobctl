@@ -9,10 +9,17 @@ setVolume() {
 }
 
 showVolume() {
-  [ -p "$volumePath" ] || exit
+  # [ -p "$volumePath" ] || exit
   volume=$(pulsemixer --get-volume | cut -d' ' -f1)
   [ $(pulsemixer --get-mute) -eq 1 ] && mute='!'
-  echo "$volume$mute" > $volumePath
+  # echo "$volume$mute" > $volumePath
+  volumeIcon='🔊'
+  if [ "$mute" = '!' ]; then
+    volumeIcon='🔇'
+  else
+    volumeIcon='🔊'
+  fi
+  dunstify -r 8082 -h int:value:$volume "$volumeIcon Volume"
 }
 
 setBrightness() {
@@ -21,9 +28,10 @@ setBrightness() {
 }
 
 showBrightness() {
-  [ -p "$brightnessPath" ] || exit
+  # [ -p "$brightnessPath" ] || exit
   brightness=$(xbacklight -get)
-  echo "$brightness" > $brightnessPath
+  # echo "$brightness" > $brightnessPath
+  dunstify -r 8081 -h int:value:$brightness "🔆 Brightness"
 }
 
 case "$1" in

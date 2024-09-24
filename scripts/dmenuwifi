@@ -3,7 +3,7 @@
 msgId="991050"
 
 connecting=$(nmcli device | grep "wifi " | awk '{print $4}')
-[ "$connecting" = '--' ] && option="Select Wifi" || option=$(echo "Select Wifi\nDisconnect: $connecting\nRefresh Wire Connection\nEnd Wire Connection\nVPN" | dmenu -l 5 -p Option -i)
+[ "$connecting" = '--' ] && option="Select Wifi" || option=$(echo "Select Wifi\nDisconnect: $connecting\nRefresh Wire Connection\nEnd Wire Connection\nVPN\nSurfshark" | dmenu -l 6 -p Option -i)
 
 [ -z "$option" ] && exit
 if [ "$option" = "Select Wifi" ];
@@ -47,6 +47,10 @@ then
 elif [ "$option" = "VPN" ];
 then
   dmenuvpn
+
+elif [ "$option" = "Surfshark" ];
+then
+  /opt/Surfshark/surfshark
 
 else
   device=$(nmcli device | grep "wifi " | awk '{print $1}')

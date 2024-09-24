@@ -1,6 +1,4 @@
 {
   "diagnostic.enable": false,
-  "suggest.noselect": false,
-  "coc.preferences.hoverTarget": "float",
-  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "suggest.noselect": false
 }

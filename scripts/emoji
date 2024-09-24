@@ -10,7 +10,7 @@
 # - libnotify
 #   Show notification
 
-selected=$(cat "$HOME/.config/emoji_list"| dmenu -i -l 25)
+selected=$(cat "$HOME/.config/BLFM/config/emoji_list"| dmenu -i -l 25)
 [ "$selected" = '' ] && exit
 (echo -n "${selected%% *}" | xclip -f -selection clipbord | xclip) &&
 xdotool key Shift+Insert &&

@@ -4,7 +4,7 @@ btpower=$([ $(bluetoothctl show | grep Powered: | cut -d' ' -f2) = 'yes' ] &&
   echo on ||
   echo off
 )
-option=$(echo "Turn On/Off\nOpen Bluetoothctl" | dmenu -i -l 2 -p "Bluetooth: $btpower")
+option=$(echo "Turn On/Off\nrfkill unblock\nOpen Bluetoothctl" | dmenu -i -l 3 -p "Bluetooth: $btpower")
 
 case "$option" in
   "Turn On/Off")
@@ -13,6 +13,9 @@ case "$option" in
       (sudo bluetoothctl power off) ||
       (sudo bluetoothctl power on)
     refstatus
+    ;;
+  "rfkill unblock")
+    rfkill unblock $(rfkill | grep bluetooth | awk '{print $1}')
     ;;
   "Open Bluetoothctl")
     alacritty -t bluetoothctl -e bluetoothctl

@@ -2,4 +2,4 @@
 
 status=$(pgrep syncthing)
 
-[ -z "$status" ] && echo "!!" || echo 
+[ -z "$status" ] && echo "!!" || echo 󰘿

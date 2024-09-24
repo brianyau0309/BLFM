@@ -9,7 +9,7 @@
 # - libnotify
 #   Show notification
 wall="$HOME/.config/wallpaper/wall" # Wallpaper Location
-imgloc="$HOME/.config/wallpaper/images" # Images Location
+imgloc="$HOME/Sync/Wallpaper" # Images Location
 [ -d "$imgloc" ] || exit 1
 
 bingWallpaper () {

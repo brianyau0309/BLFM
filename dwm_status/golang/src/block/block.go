@@ -24,7 +24,7 @@ func New(code string, exec string, interval uint8) Block {
 	return Block{code, exec, interval, ""}
 }
 
-// RefreshState is to refresh state of a Block
+// RefreshState is to refreash state of a Block
 func (block *Block) RefreshState() {
 	output, err := exec.Command(block.Exec).CombinedOutput()
 	if err == nil {
@@ -62,7 +62,7 @@ func NewList(blocks []Block) List {
 	return List{blocks, max, min}
 }
 
-// RefreshAllState is to refresh all Block state in a List
+// RefreshAllState is to refreash all Block state in a List
 func (blockList *List) RefreshAllState(counter uint8) {
 	if counter == 0 { // initial
 		for i := range blockList.List {
