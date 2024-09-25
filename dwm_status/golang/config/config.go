@@ -1,6 +1,6 @@
 package config
 
-import "../block"
+import "github.com/brianyau0309/dwm_status/block"
 
 // Get is to get config
 func Get() block.List {

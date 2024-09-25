@@ -1,6 +1,6 @@
 package main
 
-import "./config"
+import "github.com/brianyau0309/dwm_status/config"
 
 func main() {
 	statusbar := config.Get()
